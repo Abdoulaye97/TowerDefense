@@ -10,6 +10,7 @@ class Map:
         pygame.display.set_caption("Tower Defense")
         # on recuperer notre matrix que l'on stocke sur un variable
         self.word = self.matrix()
+
         # Définir la taille de la matrice et des carrés
 
         self.matrix_width = len(self.word[0])
@@ -23,10 +24,14 @@ class Map:
         self.window_width = self.matrix_width * self.square_size
         self.window_height = self.matrix_height * self.square_size
         self.screen = pygame.display.set_mode((self.window_width, self.window_height))
+        # charger un image de fond
+        self.background = pygame.image.load("sable.jpg")
+        self.background = pygame.transform.scale(self.background, (self.window_width, self.window_height))
+        self.screen.blit(self.background, (0, 0))
 
     def dessiner(self):
         for i in range(self.matrix_height):
-            # Boucler sur chaque colonne de la matrice
+            # Boucler sur chaque colonne de la matric
             for j in range(self.matrix_width):
                 # Déterminer la position de la cellule dans la grille
                 x = j * self.square_size
@@ -37,7 +42,7 @@ class Map:
                     # on charge notre image
                     image = pygame.image.load("Assets/Tiles/tileWood_bridge.png")
                     # redimensionner l'image pour qu'il prend la taille du cellule
-                    image = pygame.transform.scale(image, (self.square_size, 120))
+                    image = pygame.transform.scale(image, (self.square_size, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
                     self.screen.blit(image, rect)
@@ -45,24 +50,23 @@ class Map:
                     # on charge notre image
                     image = pygame.image.load("Assets/Tiles/tileWood_bridge.png")
                     # redimensionner l'image pour qu'il prend la taille du cellule
-                    image = pygame.transform.scale(image, (self.square_size, 120))
+                    image = pygame.transform.scale(image, (self.square_size, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
                     self.screen.blit(image, rect)
                 else:
-                     # on charge notre image
-                    image = pygame.image.load("Assets/Tiles/tileGrass.png")
+                    # on charge notre image
+                    image = pygame.image.load("Assets/Tiles/hillSand.png")
                     # redimensionner l'image pour qu'il prend la taille du cellule
-                    image = pygame.transform.scale(image, (self.square_size, 120))
+                    image = pygame.transform.scale(image, (self.square_size, 110))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
-                    self.screen.blit(image, rect)
-
+                    self.background.blit(image, rect)
 
     def run(self):
-        self.dessiner()
 
         while self.running:
+            self.dessiner()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
@@ -74,8 +78,6 @@ class Map:
     def matrix(self):
 
         word = [
-            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -89,6 +91,8 @@ class Map:
             [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+            [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         ]
         return word
