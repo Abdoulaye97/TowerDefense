@@ -49,12 +49,18 @@ class Map:
         self.window_height = self.matrix_height * self.square_size
         self.screen = pygame.display.set_mode((self.window_width, self.window_height))
         # charger un image de fond
-        self.background = pygame.image.load("sable.jpg")
+        self.background = pygame.image.load("Assets/sable.jpg")
         self.background = pygame.transform.scale(self.background, (self.window_width, self.window_height))
         # definir l'image de font de notre Menu
-        self.Fond_Menu = pygame.image.load("Background.png")
+        self.Fond_Menu = pygame.image.load("Assets/Background.png")
         # instanciation de mon menu
-        self.mon_button = Button(250, 300, "button.jpeg")
+        self.mes_button = {
+            "button_Menu": Button(420, 100, "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Menu  col_Button.png"),
+            "button_NewGame": Button(420, 220, "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/New Game  col_Button.png"),
+            "button_Options": Button(420, 340, "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Options  col_Button.png"),
+            "button_Quitt": Button(420, 460, "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Quit  col_Button.png")
+
+        }
         # instancier musique
         self.sound = Sound("Musique/1.mp3")
 
@@ -69,7 +75,7 @@ class Map:
                 cell_value = self.word[i][j]
                 if cell_value == 1:
                     # on charge notre image
-                    image = pygame.image.load("gazon.jpg")
+                    image = pygame.image.load("Assets/gazon.jpg")
                     # redimensionner l'image pour qu'il prend la taille du cellule
                     image = pygame.transform.scale(image, (self.square_size, 40))
                     # on recupere un rectangle de l'image
@@ -79,27 +85,31 @@ class Map:
     def run(self):
         while self.running:
             # On affiche notre Menu et on attend l'action de l'utilisateur pour faire des actions
-            if not self.mon_button.start:
+
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+
+            if not self.mes_button["button_NewGame"].start:
+                # on charge la musique
                 self.sound.play_sound()
                 # on charge notre menu
                 self.screen.blit(self.Fond_Menu, (0, 0))
-                # on charge lebutton
-                self.screen.blit(self.mon_button.image, self.mon_button.rect)
-                # on charge la musique
+                # on charge le Menu
+                self.screen.blit(self.mes_button["button_Menu"].image, self.mes_button["button_Menu"].rect)
+                self.screen.blit(self.mes_button["button_NewGame"].image, self.mes_button["button_NewGame"].rect)
+                self.screen.blit(self.mes_button["button_Options"].image, self.mes_button["button_Options"].rect)
+                self.screen.blit(self.mes_button["button_Quitt"].image, self.mes_button["button_Quitt"].rect)
 
                 for events in pygame.event.get():
                     if events.type == pygame.MOUSEBUTTONDOWN:
                         # on verifie si notre button est clique
-                        if self.mon_button.is_clicked(pygame.mouse.get_pos()):
+                        if self.mes_button["button_NewGame"].is_clicked(pygame.mouse.get_pos()):
                             # on charge notre fond de jeux
                             self.screen.blit(self.background, (0, 0))
                             # on demare le jeux
                             self.dessiner()
 
-                            for event in pygame.event.get():
-                                if event.type == pygame.QUIT:
-                                    self.running = False
-
-            pygame.display.flip()
+                pygame.display.flip()
 
         pygame.quit()
