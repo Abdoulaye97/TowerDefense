@@ -1,15 +1,39 @@
 import pygame
+import math
+
+from Sound import Sound
+from button import Button
+
+
+def matrix():
+    word = [
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+        [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    ]
+    return word
 
 
 class Map:
     def __init__(self):
         # Pour lancer notre application en boucle
         self.running = True
-        self.rect = ""
         # titre de notre jeu
         pygame.display.set_caption("Tower Defense")
         # on recuperer notre matrix que l'on stocke sur un variable
-        self.word = self.matrix()
+        self.word = matrix()
 
         # Définir la taille de la matrice et des carrés
 
@@ -27,7 +51,12 @@ class Map:
         # charger un image de fond
         self.background = pygame.image.load("sable.jpg")
         self.background = pygame.transform.scale(self.background, (self.window_width, self.window_height))
-        self.screen.blit(self.background, (0, 0))
+        # definir l'image de font de notre Menu
+        self.Fond_Menu = pygame.image.load("Background.png")
+        # instanciation de mon menu
+        self.mon_button = Button(250, 300, "button.jpeg")
+        # instancier musique
+        self.sound = Sound("Musique/1.mp3")
 
     def dessiner(self):
         for i in range(self.matrix_height):
@@ -47,36 +76,30 @@ class Map:
                     rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
                     self.screen.blit(image, rect)
 
-
     def run(self):
-
         while self.running:
-            self.dessiner()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
+            # On affiche notre Menu et on attend l'action de l'utilisateur pour faire des actions
+            if not self.mon_button.start:
+                self.sound.play_sound()
+                # on charge notre menu
+                self.screen.blit(self.Fond_Menu, (0, 0))
+                # on charge lebutton
+                self.screen.blit(self.mon_button.image, self.mon_button.rect)
+                # on charge la musique
+
+                for events in pygame.event.get():
+                    if events.type == pygame.MOUSEBUTTONDOWN:
+                        # on verifie si notre button est clique
+                        if self.mon_button.is_clicked(pygame.mouse.get_pos()):
+                            # on charge notre fond de jeux
+                            self.screen.blit(self.background, (0, 0))
+                            # on demare le jeux
+                            self.dessiner()
+
+                            for event in pygame.event.get():
+                                if event.type == pygame.QUIT:
+                                    self.running = False
 
             pygame.display.flip()
 
         pygame.quit()
-
-    def matrix(self):
-
-        word = [
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
-             [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
-             [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        ]
-        return word
