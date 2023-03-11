@@ -17,3 +17,6 @@ class Button:
             return True
         else:
             return False
+
+    def Quitt(self):
+        return False

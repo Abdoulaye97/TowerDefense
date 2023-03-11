@@ -55,10 +55,14 @@ class Map:
         self.Fond_Menu = pygame.image.load("Assets/Background.png")
         # instanciation de mon menu
         self.mes_button = {
-            "button_Menu": Button(420, 100, "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Menu  col_Button.png"),
-            "button_NewGame": Button(420, 220, "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/New Game  col_Button.png"),
-            "button_Options": Button(420, 340, "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Options  col_Button.png"),
-            "button_Quitt": Button(420, 460, "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Quit  col_Button.png")
+            "button_Menu": Button(420, 100,
+                                  "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Menu  col_Button.png"),
+            "button_NewGame": Button(420, 220,
+                                     "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/New Game  col_Button.png"),
+            "button_Options": Button(420, 340,
+                                     "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Options  col_Button.png"),
+            "button_Quitt": Button(420, 460,
+                                   "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Quit  col_Button.png")
 
         }
         # instancier musique
@@ -103,12 +107,15 @@ class Map:
 
                 for events in pygame.event.get():
                     if events.type == pygame.MOUSEBUTTONDOWN:
-                        # on verifie si notre button est clique
+                        # on verifie si notre button New Game est clique
                         if self.mes_button["button_NewGame"].is_clicked(pygame.mouse.get_pos()):
                             # on charge notre fond de jeux
                             self.screen.blit(self.background, (0, 0))
                             # on demare le jeux
                             self.dessiner()
+                        # On verifie si le bouttoun Quitt est clique
+                        elif self.mes_button["button_Quitt"].is_clicked(pygame.mouse.get_pos()):
+                            self.running = self.mes_button['button_Quitt'].Quitt()
 
                 pygame.display.flip()
 
