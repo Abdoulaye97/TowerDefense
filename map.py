@@ -124,6 +124,7 @@ class Map:
         pygame.display.flip()
 
     def option_play_Musique(self):
+        # On remplace le bouton par un nouveau
         new_button = Button(520, 100,
                             "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Play col_Square Button.png")
         self.mes_button["button_SousMenuStopMusique"] = new_button
@@ -132,6 +133,7 @@ class Map:
         self.sound.play_sound()
 
     def option_stop_Musique(self):
+        # On remet le boutton initial
         new_button = Button(520, 100,
                             "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Pause col_Square Button.png")
         self.mes_button["button_SousMenuStopMusique"] = new_button
@@ -140,6 +142,7 @@ class Map:
         self.sound.stop_sound()
 
     def option_play_audio(self):
+        # On remplace le bouton par un nouveau
         new_button = Button(520, 250,
                             "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Play col_Square Button.png")
         self.mes_button["button_SousMenuStopAudio"] = new_button
@@ -147,6 +150,7 @@ class Map:
                          self.mes_button["button_SousMenuStopAudio"].rect)
 
     def option_stop_audio(self):
+        # On remet le boutton initial
         new_button = Button(520, 250,
                             "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Pause col_Square Button.png")
         self.mes_button["button_SousMenuStopAudio"] = new_button
@@ -155,6 +159,7 @@ class Map:
         self.sound.stop_sound()
 
     def MenuOptions(self):
+        #   On affiche les Boutons du Sous Menu Options
         self.screen.blit(self.Fond_Menu, (0, 0))
         self.screen.blit(self.mes_button["button_SousMenuMusique"].image,
                          self.mes_button["button_SousMenuMusique"].rect)
@@ -165,7 +170,7 @@ class Map:
         self.screen.blit(self.mes_button["button_SousMenuStopAudio"].image,
                          self.mes_button["button_SousMenuStopAudio"].rect)
         self.screen.blit(self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
-
+        # On ecoute les evenements sur les Bouttons qu'on attribuer des etats et chaque etats correspond a un un fenetre ou un action
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -174,6 +179,7 @@ class Map:
                     self.etat = "menu"
 
                 elif self.mes_button["button_SousMenuMusique"].is_clicked(pygame.mouse.get_pos()):
+                    # On definie aussi des etats au niveaux des bouttons du Sous Menu Option
                     self.etat_button_options = "musique"
 
                     if self.etat_button_options == "musique":
@@ -195,7 +201,7 @@ class Map:
 
                 elif self.mes_button["button_SousMenuStopAudio"].is_clicked(pygame.mouse.get_pos()):
                     if self.etat_button_options == "audio":
-                      self.etat_button_options = "stop_audio"
+                        self.etat_button_options = "stop_audio"
 
                     if self.etat_button_options == "stop_audio":
                         self.option_stop_audio()
@@ -203,8 +209,6 @@ class Map:
         pygame.display.flip()
 
     def game(self):
-        # on charge la musique
-        # self.sound.play_sound()
         # on charge notre fond de jeux
         self.screen.blit(self.background, (0, 0))
         # on demare le jeux
@@ -212,6 +216,7 @@ class Map:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+        pygame.display.flip()
 
     def run(self):
         while self.running:
@@ -226,6 +231,7 @@ class Map:
                 self.MenuOptions()
 
             elif self.etat == "jeu":
+                # on lance notre jeux
                 self.game()
 
         pygame.quit()
