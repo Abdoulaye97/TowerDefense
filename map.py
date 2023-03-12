@@ -76,6 +76,7 @@ class Map:
                                     "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Back col_Square Button.png")
 
         }
+        self.etat_button_options = "normal"
         # instancier musique
         self.sound = Sound("Musique/1.mp3")
         self.img = pygame.image.load("Assets/gazon.jpg")
@@ -99,65 +100,132 @@ class Map:
                     rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
                     self.screen.blit(image, rect)
 
+    def MenuPrincipal(self):
+        self.screen.blit(self.Fond_Menu, (0, 0))
+        # on charge le Menu
+        self.screen.blit(self.mes_button["button_Menu"].image, self.mes_button["button_Menu"].rect)
+        self.screen.blit(self.mes_button["button_NewGame"].image, self.mes_button["button_NewGame"].rect)
+        self.screen.blit(self.mes_button["button_Options"].image, self.mes_button["button_Options"].rect)
+        self.screen.blit(self.mes_button["button_Quitt"].image, self.mes_button["button_Quitt"].rect)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+            # On ecoute les evenement du Menu
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if self.mes_button["button_NewGame"].is_clicked(pygame.mouse.get_pos()):
+                    # si c'est le bouton New Game est clique on change l'etat du jeu pour quitter fenetre menu pour aller fenetre dujeux
+                    self.etat = "jeu"
+                elif self.mes_button["button_Options"].is_clicked(pygame.mouse.get_pos()):
+                    # si c'est le bouton options est clique on change l'etat du jeu pour quitter fenetre menu pour aller fenetre du options
+                    self.etat = "options"
+                elif self.mes_button["button_Quitt"].is_clicked(pygame.mouse.get_pos()):
+                    self.running = False
+        pygame.display.flip()
+
+    def option_play_Musique(self):
+        new_button = Button(520, 100,
+                            "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Play col_Square Button.png")
+        self.mes_button["button_SousMenuStopMusique"] = new_button
+        self.screen.blit(self.mes_button["button_SousMenuStopMusique"].image,
+                         self.mes_button["button_SousMenuStopMusique"].rect)
+        self.sound.play_sound()
+
+    def option_stop_Musique(self):
+        new_button = Button(520, 100,
+                            "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Pause col_Square Button.png")
+        self.mes_button["button_SousMenuStopMusique"] = new_button
+        self.screen.blit(self.mes_button["button_SousMenuStopMusique"].image,
+                         self.mes_button["button_SousMenuStopMusique"].rect)
+        self.sound.stop_sound()
+
+    def option_play_audio(self):
+        new_button = Button(520, 250,
+                            "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Play col_Square Button.png")
+        self.mes_button["button_SousMenuStopAudio"] = new_button
+        self.screen.blit(self.mes_button["button_SousMenuStopAudio"].image,
+                         self.mes_button["button_SousMenuStopAudio"].rect)
+
+    def option_stop_audio(self):
+        new_button = Button(520, 250,
+                            "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Pause col_Square Button.png")
+        self.mes_button["button_SousMenuStopAudio"] = new_button
+        self.screen.blit(self.mes_button["button_SousMenuStopAudio"].image,
+                         self.mes_button["button_SousMenuStopAudio"].rect)
+        self.sound.stop_sound()
+
+    def MenuOptions(self):
+        self.screen.blit(self.Fond_Menu, (0, 0))
+        self.screen.blit(self.mes_button["button_SousMenuMusique"].image,
+                         self.mes_button["button_SousMenuMusique"].rect)
+        self.screen.blit(self.mes_button["button_SousMenuStopMusique"].image,
+                         self.mes_button["button_SousMenuStopMusique"].rect)
+        self.screen.blit(self.mes_button["button_SousMenuAudio"].image,
+                         self.mes_button["button_SousMenuAudio"].rect)
+        self.screen.blit(self.mes_button["button_SousMenuStopAudio"].image,
+                         self.mes_button["button_SousMenuStopAudio"].rect)
+        self.screen.blit(self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if self.mes_button["button_Retour"].is_clicked(pygame.mouse.get_pos()):
+                    self.etat = "menu"
+
+                elif self.mes_button["button_SousMenuMusique"].is_clicked(pygame.mouse.get_pos()):
+                    self.etat_button_options = "musique"
+
+                    if self.etat_button_options == "musique":
+                        self.option_play_Musique()
+
+                elif self.mes_button["button_SousMenuStopMusique"].is_clicked(pygame.mouse.get_pos()):
+
+                    if self.etat_button_options == "musique":
+                        self.etat_button_options = "stop_musique"
+
+                    if self.etat_button_options == "stop_musique":
+                        self.option_stop_Musique()
+
+                elif self.mes_button["button_SousMenuAudio"].is_clicked(pygame.mouse.get_pos()):
+                    self.etat_button_options = "audio"
+
+                    if self.etat_button_options == "audio":
+                        self.option_play_audio()
+
+                elif self.mes_button["button_SousMenuStopAudio"].is_clicked(pygame.mouse.get_pos()):
+                    if self.etat_button_options == "audio":
+                      self.etat_button_options = "stop_audio"
+
+                    if self.etat_button_options == "stop_audio":
+                        self.option_stop_audio()
+
+        pygame.display.flip()
+
+    def game(self):
+        # on charge la musique
+        # self.sound.play_sound()
+        # on charge notre fond de jeux
+        self.screen.blit(self.background, (0, 0))
+        # on demare le jeux
+        self.dessiner()
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.running = False
+
     def run(self):
         while self.running:
             # On affiche notre Menu et on attend l'action de l'utilisateur pour faire des actions
             # Mais le jeu est demarer avec l'isntance Menu et le changements des etats va permettre d'afficher les autre fenetre
             if self.etat == "menu":
                 # on charge notre menu
-                self.screen.blit(self.Fond_Menu, (0, 0))
-                # on charge le Menu
-                self.screen.blit(self.mes_button["button_Menu"].image, self.mes_button["button_Menu"].rect)
-                self.screen.blit(self.mes_button["button_NewGame"].image, self.mes_button["button_NewGame"].rect)
-                self.screen.blit(self.mes_button["button_Options"].image, self.mes_button["button_Options"].rect)
-                self.screen.blit(self.mes_button["button_Quitt"].image, self.mes_button["button_Quitt"].rect)
-
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        self.running = False
-                    # On ecoute les evenement du Menu
-                    elif event.type == pygame.MOUSEBUTTONDOWN:
-                        if self.mes_button["button_NewGame"].is_clicked(pygame.mouse.get_pos()):
-                            # si c'est le bouton New Game est clique on change l'etat du jeu pour quitter fenetre menu pour aller fenetre dujeux
-                            self.etat = "jeu"
-                        elif self.mes_button["button_Options"].is_clicked(pygame.mouse.get_pos()):
-                            # si c'est le bouton options est clique on change l'etat du jeu pour quitter fenetre menu pour aller fenetre du options
-                            self.etat = "options"
-                        elif self.mes_button["button_Quitt"].is_clicked(pygame.mouse.get_pos()):
-                            self.running = False
-                pygame.display.flip()
+                self.MenuPrincipal()
 
             elif self.etat == "options":
                 # On affiche le sous menu de Options
-                self.screen.blit(self.Fond_Menu, (0, 0))
-                self.screen.blit(self.mes_button["button_SousMenuMusique"].image,
-                                 self.mes_button["button_SousMenuMusique"].rect)
-                self.screen.blit(self.mes_button["button_SousMenuStopMusique"].image,
-                                 self.mes_button["button_SousMenuStopMusique"].rect)
-                self.screen.blit(self.mes_button["button_SousMenuAudio"].image,
-                                 self.mes_button["button_SousMenuAudio"].rect)
-                self.screen.blit(self.mes_button["button_SousMenuStopAudio"].image,
-                                 self.mes_button["button_SousMenuStopAudio"].rect)
-                self.screen.blit(self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
-
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        self.running = False
-                    elif event.type == pygame.MOUSEBUTTONDOWN:
-                        if self.mes_button["button_Retour"].is_clicked(pygame.mouse.get_pos()):
-                            self.etat = "menu"
-                pygame.display.flip()
+                self.MenuOptions()
 
             elif self.etat == "jeu":
-                # on charge la musique
-                # self.sound.play_sound()
-                # on charge notre fond de jeux
-                self.screen.blit(self.background, (0, 0))
-                # on demare le jeux
-                self.dessiner()
-                for event in pygame.event.get():
-                    if event.type == pygame.QUIT:
-                        self.running = False
-                pygame.display.flip()
+                self.game()
 
         pygame.quit()
