@@ -7,21 +7,20 @@ from button import Button
 
 def matrix():
     word = [
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1],
-        [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
-        [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
+        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
+        [1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+
     ]
     return word
 
@@ -82,7 +81,7 @@ class Map:
         self.img = pygame.image.load("Assets/gazon.jpg")
         self.etat = "menu"
 
-    def dessiner(self):
+    def dessiner_map_1(self):
         for i in range(self.matrix_height):
             # Boucler sur chaque colonne de la matric
             for j in range(self.matrix_width):
@@ -91,6 +90,7 @@ class Map:
                 y = i * self.square_size
                 # on recupere chaque valeur du matrice
                 cell_value = self.word[i][j]
+
                 if cell_value == 1:
                     # on charge notre image
                     image = pygame.image.load("Assets/gazon.jpg")
@@ -99,6 +99,20 @@ class Map:
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
                     self.screen.blit(image, rect)
+
+                elif cell_value == 0:
+                    # on charge notre image
+                    image = pygame.image.load("Assets/sable.jpg")
+                    # redimensionner l'image pour qu'il prend la taille du cellule
+                    image = pygame.transform.scale(image, (self.square_size, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
+                    self.screen.blit(image, rect)
+
+                else:
+                    # on charge notre image
+                    image = pygame.image.load("Assets/gazon.jpg")
+            pygame.display.flip()
 
     def MenuPrincipal(self):
         self.screen.blit(self.Fond_Menu, (0, 0))
@@ -210,13 +224,13 @@ class Map:
 
     def game(self):
         # on charge notre fond de jeux
-        self.screen.blit(self.background, (0, 0))
+        # self.screen.blit(self.background, (0, 0))
         # on demare le jeux
-        self.dessiner()
+        self.dessiner_map_1()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
-        pygame.display.flip()
+        # pygame.display.flip()
 
     def run(self):
         while self.running:
