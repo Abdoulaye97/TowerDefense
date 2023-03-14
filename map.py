@@ -3,6 +3,7 @@ import time
 
 from Sound import Sound
 from button import Button
+from Monstre import Monstre
 
 
 def matrix():
@@ -80,6 +81,7 @@ class Map:
         self.sound = Sound("Musique/1.mp3")
         self.img = pygame.image.load("Assets/gazon.jpg")
         self.etat = "menu"
+        self.monstre = Monstre(50,50)
 
     def dessiner_map_1(self):
         for i in range(self.matrix_height):
@@ -108,6 +110,7 @@ class Map:
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
                     self.screen.blit(image, rect)
+                    self.screen.blit(self.monstre.image_monstre, (self.monstre.positionX, self.monstre.positionY))
 
                 else:
                     # on charge notre image
@@ -227,9 +230,11 @@ class Map:
         # self.screen.blit(self.background, (0, 0))
         # on demare le jeux
         self.dessiner_map_1()
+        self.monstre.move()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
+
         # pygame.display.flip()
 
     def run(self):
