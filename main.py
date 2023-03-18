@@ -1,4 +1,5 @@
 import pygame
+
 from map import Map
 
 if __name__ == '__main__':

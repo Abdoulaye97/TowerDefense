@@ -8,8 +8,9 @@ from Monstre import Monstre
 
 def matrix():
     word = [
-        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
-        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ],
+
+        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
         [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
         [1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
@@ -79,9 +80,8 @@ class Map:
         self.etat_button_options = "normal"
         # instancier musique
         self.sound = Sound("Musique/1.mp3")
-        self.img = pygame.image.load("Assets/gazon.jpg")
         self.etat = "menu"
-        self.monstre = Monstre(50,50)
+        self.monstre = Monstre(84, -72)
 
     def dessiner_map_1(self):
         for i in range(self.matrix_height):
@@ -110,11 +110,10 @@ class Map:
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
                     self.screen.blit(image, rect)
-                    self.screen.blit(self.monstre.image_monstre, (self.monstre.positionX, self.monstre.positionY))
+                    self.screen.blit(self.monstre.image_monstre, (
+                    self.monstre.positionX + self.square_size, self.monstre.positionY + self.square_size))
+                    #self.draw_monstre()
 
-                else:
-                    # on charge notre image
-                    image = pygame.image.load("Assets/gazon.jpg")
             pygame.display.flip()
 
     def MenuPrincipal(self):
@@ -175,6 +174,17 @@ class Map:
                          self.mes_button["button_SousMenuStopAudio"].rect)
         self.sound.stop_sound()
 
+    def draw_monstre(self):
+        while self.monstre.positionY != 126:
+            clock = pygame.time.Clock()
+            while self.monstre.positionY < 126:
+                self.monstre.positionY += self.monstre.vitesse
+                self.screen.blit(self.monstre.image_monstre, (
+                    self.monstre.positionX + self.square_size, self.monstre.positionY + self.square_size))
+                pygame.display.update()
+                pygame.time.delay(self.monstre.attente)
+                clock.tick(60)    
+                    
     def MenuOptions(self):
         #   On affiche les Boutons du Sous Menu Options
         self.screen.blit(self.Fond_Menu, (0, 0))
@@ -225,18 +235,6 @@ class Map:
 
         pygame.display.flip()
 
-    def game(self):
-        # on charge notre fond de jeux
-        # self.screen.blit(self.background, (0, 0))
-        # on demare le jeux
-        self.dessiner_map_1()
-        self.monstre.move()
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                self.running = False
-
-        # pygame.display.flip()
-
     def run(self):
         while self.running:
             # On affiche notre Menu et on attend l'action de l'utilisateur pour faire des actions
@@ -251,6 +249,14 @@ class Map:
 
             elif self.etat == "jeu":
                 # on lance notre jeux
-                self.game()
+                #self.monstre.move()
+
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        self.running = False
+
+                self.dessiner_map_1()
+                self.draw_monstre()
+                
 
         pygame.quit()
