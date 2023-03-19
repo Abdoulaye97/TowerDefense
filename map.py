@@ -40,9 +40,10 @@ class Map:
 
         self.matrix_width = len(self.word[0])
         self.matrix_height = len(self.word)
-        # la taille de chaque cellule dans le fenetre en pixels
+        # la taille de chaque cellule dans le fenetre qu'on met  en pixels 
 
         self.pixels = 40
+        
 
         # Définir la taille de la fenêtre en fonction de notre matrice
 
