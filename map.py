@@ -42,12 +42,12 @@ class Map:
         self.matrix_height = len(self.word)
         # la taille de chaque cellule dans le fenetre en pixels
 
-        self.square_size = 40
+        self.pixels = 40
 
         # Définir la taille de la fenêtre en fonction de notre matrice
 
-        self.window_width = self.matrix_width * self.square_size
-        self.window_height = self.matrix_height * self.square_size
+        self.window_width = self.matrix_width * self.pixels
+        self.window_height = self.matrix_height * self.pixels
         self.screen = pygame.display.set_mode((self.window_width, self.window_height))
         # charger un image de fond
         self.background = pygame.image.load("Assets/sable.jpg")
@@ -88,31 +88,31 @@ class Map:
             # Boucler sur chaque colonne de la matric
             for j in range(self.matrix_width):
                 # Déterminer la position de la cellule dans la grille
-                x = j * self.square_size
-                y = i * self.square_size
+                x = j * self.pixels
+                y = i * self.pixels
                 # on recupere chaque valeur du matrice
-                cell_value = self.word[i][j]
+                cellule = self.word[i][j]
 
-                if cell_value == 1:
-                    # on charge notre image
+                if cellule == 1:
+                    # on charge  image
                     image = pygame.image.load("Assets/gazon.jpg")
-                    # redimensionner l'image pour qu'il prend la taille du cellule
-                    image = pygame.transform.scale(image, (self.square_size, 40))
+                    #On redimensionner l'image pour qu'il prend la taille du cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
-                    rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
+                    rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
 
-                elif cell_value == 0:
+                elif cellule == 0:
                     # on charge notre image
                     image = pygame.image.load("Assets/sable.jpg")
-                    # redimensionner l'image pour qu'il prend la taille du cellule
-                    image = pygame.transform.scale(image, (self.square_size, 40))
+                    #On redimensionner l'image pour qu'il prend la taille du cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
-                    rect = image.get_rect(center=(x + self.square_size / 2, y + self.square_size / 2))
+                    rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
                     self.screen.blit(self.monstre.image_monstre, (
-                    self.monstre.positionX + self.square_size, self.monstre.positionY + self.square_size))
-                    #self.draw_monstre()
+                        self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
+                   
 
             pygame.display.flip()
 
@@ -177,14 +177,18 @@ class Map:
     def draw_monstre(self):
         while self.monstre.positionY != 126:
             clock = pygame.time.Clock()
-            while self.monstre.positionY < 126:
-                self.monstre.positionY += self.monstre.vitesse
-                self.screen.blit(self.monstre.image_monstre, (
-                    self.monstre.positionX + self.square_size, self.monstre.positionY + self.square_size))
-                pygame.display.update()
-                pygame.time.delay(self.monstre.attente)
-                clock.tick(60)    
-                    
+            self.monstre.positionY += self.monstre.vitesse
+            self.screen.blit(self.monstre.image_monstre, (
+                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
+            pygame.display.update()
+            pygame.time.delay(self.monstre.attente)
+            clock.tick(60) 
+
+        self.screen.blit(self.monstre.image_monstre, (
+            self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
+
+
+
     def MenuOptions(self):
         #   On affiche les Boutons du Sous Menu Options
         self.screen.blit(self.Fond_Menu, (0, 0))
@@ -249,7 +253,7 @@ class Map:
 
             elif self.etat == "jeu":
                 # on lance notre jeux
-                #self.monstre.move()
+                # self.monstre.move()
 
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
@@ -257,6 +261,5 @@ class Map:
 
                 self.dessiner_map_1()
                 self.draw_monstre()
-                
 
         pygame.quit()
