@@ -58,6 +58,7 @@ class Map:
         self.mes_button = {
 
             "button_Menu": Button(420, 100,
+                 
                                   "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Menu  col_Button.png"),
             "button_NewGame": Button(420, 220,
                                      "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/New Game  col_Button.png"),
