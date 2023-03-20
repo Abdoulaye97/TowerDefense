@@ -175,8 +175,8 @@ class Map:
         self.sound.stop_sound()
 
     def draw_monstre(self):
-        if self.monstre.positionY != 126:
-            self.dessiner_map_1()
+        self.dessiner_map_1()
+        if self.monstre.positionY != 126 and self.monstre.positionX==84:
             clock = pygame.time.Clock()
             self.monstre.positionY += self.monstre.vitesse
             self.screen.blit(self.monstre.image_monstre, (
@@ -185,8 +185,14 @@ class Map:
             pygame.time.delay(self.monstre.attente)
             clock.tick(60)
 
-        self.screen.blit(self.monstre.image_monstre, (
-            self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
+        elif self.monstre.positionX != 282 and self.monstre.positionY==126:
+            clock = pygame.time.Clock()
+            self.monstre.positionX += self.monstre.vitesse
+            self.screen.blit(self.monstre.image_monstre, (
+                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
+            pygame.display.update()
+            pygame.time.delay(self.monstre.attente)
+            clock.tick(60)
 
     def MenuOptions(self):
         #   On affiche les Boutons du Sous Menu Options
