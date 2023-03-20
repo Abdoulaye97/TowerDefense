@@ -43,7 +43,6 @@ class Map:
         # la taille de chaque cellule dans le fenetre qu'on met  en pixels 
 
         self.pixels = 40
-        
 
         # Définir la taille de la fenêtre en fonction de notre matrice
 
@@ -59,7 +58,7 @@ class Map:
         self.mes_button = {
 
             "button_Menu": Button(420, 100,
-                 
+
                                   "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Menu  col_Button.png"),
             "button_NewGame": Button(420, 220,
                                      "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/New Game  col_Button.png"),
@@ -98,7 +97,7 @@ class Map:
                 if cellule == 1:
                     # on charge  image
                     image = pygame.image.load("Assets/gazon.jpg")
-                    #On redimensionner l'image pour qu'il prend la taille du cellule
+                    # On redimensionner l'image pour qu'il prend la taille du cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
@@ -107,14 +106,13 @@ class Map:
                 elif cellule == 0:
                     # on charge notre image
                     image = pygame.image.load("Assets/sable.jpg")
-                    #On redimensionner l'image pour qu'il prend la taille du cellule
+                    # On redimensionner l'image pour qu'il prend la taille du cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
                     self.screen.blit(self.monstre.image_monstre, (
                         self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
-                   
 
             pygame.display.flip()
 
@@ -177,19 +175,18 @@ class Map:
         self.sound.stop_sound()
 
     def draw_monstre(self):
-        while self.monstre.positionY != 126:
+        if self.monstre.positionY != 126:
+            self.dessiner_map_1()
             clock = pygame.time.Clock()
             self.monstre.positionY += self.monstre.vitesse
             self.screen.blit(self.monstre.image_monstre, (
                 self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
             pygame.display.update()
             pygame.time.delay(self.monstre.attente)
-            clock.tick(60) 
+            clock.tick(60)
 
         self.screen.blit(self.monstre.image_monstre, (
             self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
-
-
 
     def MenuOptions(self):
         #   On affiche les Boutons du Sous Menu Options
