@@ -9,19 +9,19 @@ from Monstre import Monstre
 def matrix():
     word = [
 
-        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-        [1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-        [1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1],
+        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
     ]
     return word
@@ -40,7 +40,7 @@ class Map:
 
         self.matrix_width = len(self.word[0])
         self.matrix_height = len(self.word)
-        # la taille de chaque cellule dans le fenetre qu'on met  en pixels 
+        # la taille de chaque cellule dans le fenetre qu'on met  en pixels
 
         self.pixels = 40
 
@@ -48,10 +48,12 @@ class Map:
 
         self.window_width = self.matrix_width * self.pixels
         self.window_height = self.matrix_height * self.pixels
-        self.screen = pygame.display.set_mode((self.window_width, self.window_height))
+        self.screen = pygame.display.set_mode(
+            (self.window_width, self.window_height))
         # charger un image de fond
         self.background = pygame.image.load("Assets/sable.jpg")
-        self.background = pygame.transform.scale(self.background, (self.window_width, self.window_height))
+        self.background = pygame.transform.scale(
+            self.background, (self.window_width, self.window_height))
         # definir l'image de font de notre Menu
         self.Fond_Menu = pygame.image.load("Assets/Background.png")
         # instanciation de mon menu
@@ -82,7 +84,8 @@ class Map:
         # instancier musique
         self.sound = Sound("Musique/1.mp3")
         self.etat = "menu"
-        self.monstre = Monstre(84, -72)
+        # self.monstre = Monstre(84, -72)
+        self.monstre = Monstre(84, 480)
 
     def dessiner_map_1(self):
         for i in range(self.matrix_height):
@@ -100,7 +103,8 @@ class Map:
                     # On redimensionner l'image pour qu'il prend la taille du cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
-                    rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
 
                 elif cellule == 0:
@@ -109,7 +113,8 @@ class Map:
                     # On redimensionner l'image pour qu'il prend la taille du cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
-                    rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
                     self.screen.blit(self.monstre.image_monstre, (
                         self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
@@ -119,10 +124,14 @@ class Map:
     def MenuPrincipal(self):
         self.screen.blit(self.Fond_Menu, (0, 0))
         # on charge le Menu
-        self.screen.blit(self.mes_button["button_Menu"].image, self.mes_button["button_Menu"].rect)
-        self.screen.blit(self.mes_button["button_NewGame"].image, self.mes_button["button_NewGame"].rect)
-        self.screen.blit(self.mes_button["button_Options"].image, self.mes_button["button_Options"].rect)
-        self.screen.blit(self.mes_button["button_Quitt"].image, self.mes_button["button_Quitt"].rect)
+        self.screen.blit(
+            self.mes_button["button_Menu"].image, self.mes_button["button_Menu"].rect)
+        self.screen.blit(
+            self.mes_button["button_NewGame"].image, self.mes_button["button_NewGame"].rect)
+        self.screen.blit(
+            self.mes_button["button_Options"].image, self.mes_button["button_Options"].rect)
+        self.screen.blit(
+            self.mes_button["button_Quitt"].image, self.mes_button["button_Quitt"].rect)
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -174,25 +183,42 @@ class Map:
                          self.mes_button["button_SousMenuStopAudio"].rect)
         self.sound.stop_sound()
 
+    # cet fonction qui affiche le monstre et le fait deplacer automatiquement
     def draw_monstre(self):
         self.dessiner_map_1()
-        if self.monstre.positionY != 126 and self.monstre.positionX==84:
-            clock = pygame.time.Clock()
-            self.monstre.positionY += self.monstre.vitesse
+        clock = pygame.time.Clock()
+        if self.monstre.positionY != 324 and self.monstre.positionX == 84:
+            self.monstre.positionY -= self.monstre.vitesse
             self.screen.blit(self.monstre.image_monstre, (
                 self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
             pygame.display.update()
             pygame.time.delay(self.monstre.attente)
-            clock.tick(60)
-
-        elif self.monstre.positionX != 282 and self.monstre.positionY==126:
-            clock = pygame.time.Clock()
+        elif self.monstre.positionX != 564 and self.monstre.positionY == 324:
             self.monstre.positionX += self.monstre.vitesse
             self.screen.blit(self.monstre.image_monstre, (
                 self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
             pygame.display.update()
             pygame.time.delay(self.monstre.attente)
-            clock.tick(60)
+        elif self.monstre.positionY != 42 and self.monstre.positionX == 564:
+            self.monstre.positionY -= self.monstre.vitesse
+            self.screen.blit(self.monstre.image_monstre, (
+                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
+            pygame.display.update()
+            pygame.time.delay(self.monstre.attente)
+        elif self.monstre.positionX != 165 and self.monstre.positionY == 42:
+            self.monstre.positionX -= self.monstre.vitesse
+            self.screen.blit(self.monstre.image_monstre, (
+                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
+            pygame.display.update()
+            pygame.time.delay(self.monstre.attente)
+        elif self.monstre.positionX == 165 and self.monstre.positionY != -72:
+            self.monstre.positionY -= self.monstre.vitesse
+            self.screen.blit(self.monstre.image_monstre, (
+                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
+            pygame.display.update()
+            pygame.time.delay(self.monstre.attente)
+            if self.monstre.positionX == 165 and self.monstre.positionY == -72:
+                self.monstre.position_depart()
 
     def MenuOptions(self):
         #   On affiche les Boutons du Sous Menu Options
@@ -205,7 +231,8 @@ class Map:
                          self.mes_button["button_SousMenuAudio"].rect)
         self.screen.blit(self.mes_button["button_SousMenuStopAudio"].image,
                          self.mes_button["button_SousMenuStopAudio"].rect)
-        self.screen.blit(self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
+        self.screen.blit(
+            self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
         # On ecoute les evenements sur les Bouttons qu'on attribuer des etats et chaque etats correspond a un un fenetre ou un action
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -258,8 +285,6 @@ class Map:
 
             elif self.etat == "jeu":
                 # on lance notre jeux
-                # self.monstre.move()
-
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.running = False

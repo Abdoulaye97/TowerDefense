@@ -5,7 +5,8 @@ class Monstre(pygame.sprite.Sprite):
     def __init__(self, positionX, positionY):
         super().__init__()
         self.image_monstre = pygame.image.load("alien.png")
-        self.image_monstre = pygame.transform.scale(self.image_monstre, (30, 30))
+        self.image_monstre = pygame.transform.scale(
+            self.image_monstre, (30, 30))
         self.positionX = positionX
         self.positionY = positionY
         self.vitesse = 3
@@ -16,6 +17,10 @@ class Monstre(pygame.sprite.Sprite):
     def update(self):
         self.positionY = self.direction_y
         self.positionY = self.positionX
+
+    def position_depart(self):
+        self.positionX = 84
+        self.positionY = 480
 
     def move(self):
 
@@ -33,3 +38,5 @@ class Monstre(pygame.sprite.Sprite):
                 elif event.key == pygame.K_RIGHT:
                     self.direction_x = 1
                     self.positionX += self.direction_x * self.vitesse
+
+        print("{0},{1}".format(self.positionX, self.positionY))
