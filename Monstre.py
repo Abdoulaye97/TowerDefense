@@ -1,6 +1,7 @@
 import pygame
 
 
+
 class Monstre(pygame.sprite.Sprite):
     def __init__(self, positionX, positionY):
         super().__init__()
@@ -40,3 +41,39 @@ class Monstre(pygame.sprite.Sprite):
                     self.positionX += self.direction_x * self.vitesse
 
         print("{0},{1}".format(self.positionX, self.positionY))
+
+    def draw_monstre(self, screen, pixels):
+
+        clock = pygame.time.Clock()
+        if self.positionY != 324 and self.positionX == 84:
+            self.positionY -= self.vitesse
+            screen.blit(self.image_monstre, (
+                self.positionX + pixels, self.positionY + pixels))
+            pygame.display.update()
+            pygame.time.delay(self.attente)
+        elif self.positionX != 564 and self.positionY == 324:
+            self.positionX += self.vitesse
+            screen.blit(self.image_monstre, (
+                self.positionX + pixels, self.positionY + pixels))
+            pygame.display.update()
+            pygame.time.delay(self.attente)
+        elif self.positionY != 42 and self.positionX == 564:
+            self.positionY -= self.vitesse
+            screen.blit(self.image_monstre, (
+                self.positionX + pixels, self.positionY + pixels))
+            pygame.display.update()
+            pygame.time.delay(self.attente)
+        elif self.positionX != 165 and self.positionY == 42:
+            self.positionX -= self.vitesse
+            screen.blit(self.image_monstre, (
+                self.positionX + pixels, self.positionY + pixels))
+            pygame.display.update()
+            pygame.time.delay(self.attente)
+        elif self.positionX == 165 and self.positionY != -72:
+            self.positionY -= self.vitesse
+            screen.blit(self.image_monstre, (
+                self.positionX + pixels, self.positionY + pixels))
+            pygame.display.update()
+            pygame.time.delay(self.attente)
+            if self.positionX == 165 and self.positionY == -72:
+                self.position_depart()

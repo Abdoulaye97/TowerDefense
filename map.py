@@ -183,43 +183,6 @@ class Map:
                          self.mes_button["button_SousMenuStopAudio"].rect)
         self.sound.stop_sound()
 
-    # cet fonction qui affiche le monstre et le fait deplacer automatiquement
-    def draw_monstre(self):
-        self.dessiner_map_1()
-        clock = pygame.time.Clock()
-        if self.monstre.positionY != 324 and self.monstre.positionX == 84:
-            self.monstre.positionY -= self.monstre.vitesse
-            self.screen.blit(self.monstre.image_monstre, (
-                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
-            pygame.display.update()
-            pygame.time.delay(self.monstre.attente)
-        elif self.monstre.positionX != 564 and self.monstre.positionY == 324:
-            self.monstre.positionX += self.monstre.vitesse
-            self.screen.blit(self.monstre.image_monstre, (
-                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
-            pygame.display.update()
-            pygame.time.delay(self.monstre.attente)
-        elif self.monstre.positionY != 42 and self.monstre.positionX == 564:
-            self.monstre.positionY -= self.monstre.vitesse
-            self.screen.blit(self.monstre.image_monstre, (
-                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
-            pygame.display.update()
-            pygame.time.delay(self.monstre.attente)
-        elif self.monstre.positionX != 165 and self.monstre.positionY == 42:
-            self.monstre.positionX -= self.monstre.vitesse
-            self.screen.blit(self.monstre.image_monstre, (
-                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
-            pygame.display.update()
-            pygame.time.delay(self.monstre.attente)
-        elif self.monstre.positionX == 165 and self.monstre.positionY != -72:
-            self.monstre.positionY -= self.monstre.vitesse
-            self.screen.blit(self.monstre.image_monstre, (
-                self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
-            pygame.display.update()
-            pygame.time.delay(self.monstre.attente)
-            if self.monstre.positionX == 165 and self.monstre.positionY == -72:
-                self.monstre.position_depart()
-
     def MenuOptions(self):
         #   On affiche les Boutons du Sous Menu Options
         self.screen.blit(self.Fond_Menu, (0, 0))
@@ -290,6 +253,6 @@ class Map:
                         self.running = False
 
                 self.dessiner_map_1()
-                self.draw_monstre()
+                self.monstre.draw_monstre(self.screen, self.pixels)
 
         pygame.quit()
