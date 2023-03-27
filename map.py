@@ -4,6 +4,7 @@ import time
 from Sound import Sound
 from button import Button
 from Monstre import Monstre
+from Vie import Vie
 
 
 def matrix():
@@ -84,8 +85,13 @@ class Map:
         # instancier musique
         self.sound = Sound("Musique/1.mp3")
         self.etat = "menu"
-        # self.monstre = Monstre(84, -72)
-        self.monstre = Monstre(84, 480)
+        # self.monstre = Monstre(84, 324)
+        # self.monstre2 = Monstre(84, 552)
+        # self.monstre = Monstre(84, 480)
+        self.vie_joueur = Vie()
+        self.monstres = []
+        self.monstres.append(Monstre(84, 480))
+        self.monstres.append(Monstre(84, 552))
 
     def dessiner_map_1(self):
         for i in range(self.matrix_height):
@@ -116,10 +122,8 @@ class Map:
                     rect = image.get_rect(
                         center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
-                    self.screen.blit(self.monstre.image_monstre, (
-                        self.monstre.positionX + self.pixels, self.monstre.positionY + self.pixels))
 
-            pygame.display.flip()
+        pygame.display.flip()
 
     def MenuPrincipal(self):
         self.screen.blit(self.Fond_Menu, (0, 0))
@@ -235,6 +239,7 @@ class Map:
         pygame.display.flip()
 
     def run(self):
+
         while self.running:
             # On affiche notre Menu et on attend l'action de l'utilisateur pour faire des actions
             # Mais le jeu est demarer avec l'isntance Menu et le changements des etats va permettre d'afficher les autre fenetre
@@ -248,11 +253,22 @@ class Map:
 
             elif self.etat == "jeu":
                 # on lance notre jeux
+                # clock = pygame.time.Clock()
+                # self.monstre.move()
+
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.running = False
 
                 self.dessiner_map_1()
-                self.monstre.draw_monstre(self.screen, self.pixels)
+
+                for monstre in self.monstres:
+                    monstre.draw_monstre(self.screen, self.pixels)
+                    monstre.update_bar_de_vie(self.screen)
+                    if monstre.positionX == 165 and monstre.positionY == -66:
+                        self.vie_joueur.degat(monstre.degat)
+
+                self.vie_joueur.afficher_vie_joueur(self.screen)
+                pygame.display.flip()
 
         pygame.quit()
