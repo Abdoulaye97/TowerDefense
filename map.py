@@ -13,7 +13,7 @@ def matrix():
         [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
         [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
         [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+        [1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
@@ -105,7 +105,7 @@ class Map:
 
                 if cellule == 1:
                     # on charge  image
-                    image = pygame.image.load("Assets/gazon.jpg")
+                    image = pygame.image.load("Assets/Armes/wals.png")
                     # On redimensionner l'image pour qu'il prend la taille du cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -122,9 +122,29 @@ class Map:
                     rect = image.get_rect(
                         center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
+
                 elif cellule == 2:
-                    # Dessiner un rectangle rouge
+
                     pygame.draw.rect(self.screen, (171, 178, 185), pygame.Rect(x, y, self.pixels, 40))
+                    image = pygame.image.load("Assets/Armes/armes.png")
+                    image = pygame.transform.scale(image,(self.pixels, 40))
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
+                elif cellule==3:
+                    image = pygame.image.load("Assets/Armes/wals.png")
+                    # On redimensionner l'image pour qu'il prend la taille du cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
+                    image = pygame.image.load("Assets/Armes/armes.png")
+                    image = pygame.transform.scale(image,(self.pixels, 40))
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
+
 
         pygame.display.flip()
 
