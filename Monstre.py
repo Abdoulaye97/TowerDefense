@@ -1,6 +1,5 @@
 import pygame
 
-
 class Monstre(pygame.sprite.Sprite):
     def __init__(self, positionX, positionY):
         super().__init__()
@@ -94,7 +93,6 @@ class Monstre(pygame.sprite.Sprite):
                 pygame.display.update()
                 pygame.time.delay(2000)
                 pygame.quit()
-                sys.exit()
             else:
                 # Le joueur a encore de la vie, réinitialiser la position du monstre et du joueur
                 self.position_depart()
