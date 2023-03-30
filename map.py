@@ -292,6 +292,7 @@ class Map:
                         self.vie_joueur.degat(monstre.degat)
 
                 self.vie_joueur.afficher_vie_joueur(self.screen)
+                self.monstre.health_player(self.screen)
                 pygame.display.flip()
 
         pygame.quit()
