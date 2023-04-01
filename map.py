@@ -5,27 +5,29 @@ from Sound import Sound
 from button import Button
 from Monstre import Monstre
 from Vie import Vie
+from Armes import Arme
+
+# def matrix():
+word = [
+
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+
+]
 
 
-def matrix():
-    word = [
-
-        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-        [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-
-    ]
-    return word
+# return word
 
 
 class Map:
@@ -35,7 +37,7 @@ class Map:
         # titre de notre jeu
         pygame.display.set_caption("Tower Defense")
         # on recuperer notre matrix que l'on stocke sur un variable
-        self.word = matrix()
+        self.word = word
 
         # Définir la taille de la matrice et des carrés
 
@@ -85,10 +87,10 @@ class Map:
         # instancier musique
         self.sound = Sound("Musique/1.mp3")
         self.etat = "menu"
-        # self.monstre = Monstre(84, 324)
-        # self.monstre2 = Monstre(84, 552)
-        # self.monstre = Monstre(84, 480)
         self.vie_joueur = Vie()
+        self.armes = {
+            "arme_1": Arme(668, 42, "Assets/Armes/armes.png", "arme_1")
+        }
         self.monstres = []
         self.monstres.append(Monstre(84, 480))
         self.monstres.append(Monstre(84, 552))
@@ -124,27 +126,25 @@ class Map:
                     self.screen.blit(image, rect)
 
                 elif cellule == 2:
-
                     pygame.draw.rect(self.screen, (171, 178, 185), pygame.Rect(x, y, self.pixels, 40))
-                    image = pygame.image.load("Assets/Armes/armes.png")
-                    image = pygame.transform.scale(image,(self.pixels, 40))
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-                elif cellule==3:
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionner l'image pour qu'il prend la taille du cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-                    image = pygame.image.load("Assets/Armes/armes.png")
-                    image = pygame.transform.scale(image,(self.pixels, 40))
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
+                # image = pygame.transform.scale(image,(self.pixels, 40))
+                # rect = image.get_rect(
+                #   center=(x + self.pixels / 2, y + self.pixels / 2))
+                # self.screen.blit(image, rect)
 
+            # elif cellule==3:
+            #    image = pygame.image.load("Assets/Armes/wals.png")
+            # On redimensionner l'image pour qu'il prend la taille du cellule
+            #   image = pygame.transform.scale(image, (self.pixels, 40))
+            # on recupere un rectangle de l'image
+            #  rect = image.get_rect(
+            #     center=(x + self.pixels / 2, y + self.pixels / 2))
+            # self.screen.blit(image, rect)
+            # image = pygame.image.load("Assets/Armes/armes.png")
+            # image = pygame.transform.scale(image,(self.pixels, 40))
+            # rect = image.get_rect(
+            #   center=(x + self.pixels / 2, y + self.pixels / 2))
+            # self.screen.blit(image, rect)
 
         pygame.display.flip()
 
@@ -166,10 +166,10 @@ class Map:
             # On ecoute les evenement du Menu
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if self.mes_button["button_NewGame"].is_clicked(pygame.mouse.get_pos()):
-                    # si c'est le bouton New Game est clique on change l'etat du jeu pour quitter fenetre menu pour aller fenetre dujeux
+                    # si c'est le bouton New Game est (clique) on change l'etat du jeu pour quitter fenetre menu pour aller fenetre dujeux
                     self.etat = "jeu"
                 elif self.mes_button["button_Options"].is_clicked(pygame.mouse.get_pos()):
-                    # si c'est le bouton options est clique on change l'etat du jeu pour quitter fenetre menu pour aller fenetre du options
+                    # si c'est le bouton options est (clique) on change l'etat du jeu pour quitter fenetre menu pour aller fenetre des options
                     self.etat = "options"
                 elif self.mes_button["button_Quitt"].is_clicked(pygame.mouse.get_pos()):
                     self.running = False
@@ -211,7 +211,7 @@ class Map:
         self.sound.stop_sound()
 
     def MenuOptions(self):
-        #   On affiche les Boutons du Sous Menu Options
+        #   On affiche les Boutons du Sous Menues Options
         self.screen.blit(self.Fond_Menu, (0, 0))
         self.screen.blit(self.mes_button["button_SousMenuMusique"].image,
                          self.mes_button["button_SousMenuMusique"].rect)
@@ -223,7 +223,7 @@ class Map:
                          self.mes_button["button_SousMenuStopAudio"].rect)
         self.screen.blit(
             self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
-        # On ecoute les evenements sur les Bouttons qu'on attribuer des etats et chaque etats correspond a un un fenetre ou un action
+        # On écoute les evenements sur les Bouttons qu'on attribue des etats et chaque etats correspond à un fenetre ou une action
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -265,13 +265,13 @@ class Map:
 
         while self.running:
             # On affiche notre Menu et on attend l'action de l'utilisateur pour faire des actions
-            # Mais le jeu est demarer avec l'isntance Menu et le changements des etats va permettre d'afficher les autre fenetre
+            # Mais le jeu est demarer avec l'isntance Menu et les changements des etats va permettre d'afficher l'autre fenetre.
             if self.etat == "menu":
                 # on charge notre menu
                 self.MenuPrincipal()
 
             elif self.etat == "options":
-                # On affiche le sous menu de Options
+                # On affiche le sous menu d'options
                 self.MenuOptions()
 
             elif self.etat == "jeu":
@@ -284,15 +284,16 @@ class Map:
                         self.running = False
 
                 self.dessiner_map_1()
+                self.vie_joueur.afficher_vie_joueur(self.screen)
 
                 for monstre in self.monstres:
-                    monstre.draw_monstre(self.screen, self.pixels)
-                    monstre.update_bar_de_vie(self.screen)
-                    if monstre.positionX == 165 and monstre.positionY == -66:
-                        self.vie_joueur.degat(monstre.degat)
+                    if self.vie_joueur.vie_joueur > 0:
+                        monstre.draw_monstre(self.screen, self.pixels)
+                        monstre.update_bar_de_vie(self.screen)
 
-                self.vie_joueur.afficher_vie_joueur(self.screen)
-                self.monstre.health_player(self.screen)
+                    if monstre.positionX == 165 and monstre.positionY == -66:
+                        self.vie_joueur.degat(monstre.degat, self.screen)
+
                 pygame.display.flip()
 
         pygame.quit()

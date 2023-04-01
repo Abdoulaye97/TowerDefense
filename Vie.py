@@ -25,10 +25,26 @@ class Vie:
         # dessiner le texte sur la surface de jeu
         screen.blit(texte, (370, 10))
 
-    def degat(self, nbr):
-        self.vie_joueur-=nbr
+    def degat(self, nbr, screen):
+        self.vie_joueur -= nbr
+        if self.vie_joueur == 0:
+            # Le joueur est mort, afficher un message et quitter le jeu
+            font = pygame.font.Font(None, 36)
+            message = font.render("Game over!", True, (255, 0, 0))
+            screen.blit(message, (250, 250))
+            pygame.display.update()
 
-    def game_over(self, screen):
-        if self.vie_joueur<=0:
-            image = pygame.image.load("Assets/Background.png")
-            screen.blit(image, (0, 0))
+    def health_player(self, screen):
+        if self.positionX == 165 and self.positionY == -72:
+            self.health -= 1
+            print(self.health)
+            if self.health == 0:
+                # Le joueur est mort, afficher un message et quitter le jeu
+                message = self.font.render("Game over!", True, (255, 0, 0))
+                screen.blit(message, (250, 250))
+                pygame.display.update()
+                pygame.time.delay(2000)
+                pygame.quit()
+            else:
+                # Le joueur a encore de la vie, réinitialiser la position du monstre et du joueur
+                self.position_depart()

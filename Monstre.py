@@ -1,5 +1,6 @@
 import pygame
 
+
 class Monstre(pygame.sprite.Sprite):
     def __init__(self, positionX, positionY):
         super().__init__()
@@ -79,21 +80,7 @@ class Monstre(pygame.sprite.Sprite):
                                          pixels, self.positionY + pixels))
 
     def getPositionY(self):
-        print("Position X et Y: {0},{1}".format(self.positionX,self.positionY))
+        print("Position X et Y: {0},{1}".format(self.positionX, self.positionY))
         # print("Taille {0}".format(self.image_monstre.get_size()))
 
-    def health_player(self, screen):
-        if self.positionX == 165 and self.positionY == -72:
-            self.health -= 1
-            print(self.health)
-            if self.health == 0:
-                # Le joueur est mort, afficher un message et quitter le jeu
-                message = self.font.render("Game over!", True, (255, 0, 0))
-                screen.blit(message, (250, 250))
-                pygame.display.update()
-                pygame.time.delay(2000)
-                pygame.quit()
-            else:
-                # Le joueur a encore de la vie, réinitialiser la position du monstre et du joueur
-                self.position_depart()
 
