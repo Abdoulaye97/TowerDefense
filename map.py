@@ -33,9 +33,27 @@ word_2 = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+
+]
+
+word_3 = [
+
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
@@ -115,7 +133,7 @@ class Map:
         self.monstres.append(Monstre(84, 480))
         self.monstres.append(Monstre(84, 552))
         self.cartes = {
-            "carte_1": Carte(170, 250, "map_1.png"),
+            "carte_1": Carte(170, 250, "Assets/button_play.png"),
             "carte_2": Carte(480, 250, "map_2.png"),
             "carte_3": Carte(790, 250, "map_1.png")
         }
@@ -198,6 +216,44 @@ class Map:
                     #   center=(x + self.pixels / 2, y + self.pixels / 2))
                     # self.screen.blit(image, rect)
 
+    def dessiner_map_3(self):
+
+        for i in range(self.matrix_height):
+            # Boucler sur chaque colonne de la matric
+            for j in range(self.matrix_width):
+                # Déterminer la position de la cellule dans la grille
+                x = j * self.pixels
+                y = i * self.pixels
+                # on recupere chaque valeur du matrice
+                cellule = word_3[i][j]
+
+                if cellule == 1:
+                    # on charge  image
+                    image = pygame.image.load("Assets/Armes/wals.png")
+                    # On redimensionner l'image pour qu'il prend la taille du cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
+
+                elif cellule == 0:
+                    # on charge notre image
+                    image = pygame.image.load("Assets/sable.jpg")
+                    # On redimensionne l'image pour qu'il prend la taille du cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
+
+                elif cellule == 2:
+                    pygame.draw.rect(self.screen, (171, 178, 185), pygame.Rect(x, y, self.pixels, 40))
+                    # image = pygame.transform.scale(image,(self.pixels, 40))
+                    # rect = image.get_rect(
+                    #   center=(x + self.pixels / 2, y + self.pixels / 2))
+                    # self.screen.blit(image, rect)
+
         pygame.display.flip()
 
     def MenuPrincipal(self):
@@ -240,8 +296,12 @@ class Map:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if self.cartes["carte_1"].is_clicked_map(pygame.mouse.get_pos()):
                     self.etat = "jeu_map1"
+
                 elif self.cartes["carte_2"].is_clicked_map(pygame.mouse.get_pos()):
                     self.etat = "jeu_map2"
+
+                elif self.cartes["carte_3"].is_clicked_map(pygame.mouse.get_pos()):
+                    self.etat = "jeu_map3"
 
         pygame.display.flip()
 
@@ -368,6 +428,22 @@ class Map:
                     if event.type == pygame.QUIT:
                         self.running = False
                 self.dessiner_map_2()
+                self.vie_joueur.afficher_vie_joueur(self.screen)
+
+                for monstre in self.monstres:
+                    if self.vie_joueur.vie_joueur > 0:
+                        monstre.draw_monstre_map_2(self.screen, self.pixels)
+                        monstre.update_bar_de_vie(self.screen)
+                        if monstre.positionX == 444 and monstre.positionY == -66:
+                            self.vie_joueur.degat(monstre.degat, self.screen)
+
+            # Map 3
+            elif self.etat == "jeu_map3":
+
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        self.running = False
+                self.dessiner_map_3()
                 self.vie_joueur.afficher_vie_joueur(self.screen)
 
                 for monstre in self.monstres:
