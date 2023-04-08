@@ -89,8 +89,11 @@ class Map:
         self.etat = "menu"
         self.vie_joueur = Vie()
         self.armes = {
-            "arme_1": Arme(668, 42, "Assets/Armes/armes.png", "arme_1")
+            "arme_1": Arme(655, -10, "Assets/Armes/armes.png", "arme_1")
         }
+        self.armes_placees = []
+        self.arme_selectionnee = None
+
         self.monstres = []
         self.monstres.append(Monstre(84, 480))
         self.monstres.append(Monstre(84, 552))
@@ -261,6 +264,29 @@ class Map:
 
         pygame.display.flip()
 
+    def afficher_armes(self, screen, pixels):
+        for arme in self.armes.values():
+            arme.type_arme(screen, pixels)
+
+    def placer_arme(self, position_souris):
+        for arme in self.armes.values():
+            if arme.rect.collidepoint(position_souris) and not arme.selectionne:
+                arme.selectionne = True
+                self.arme_selectionnee = arme
+                print("Arme sélectionnée :", arme.type)
+                return True
+        return False
+
+    def deplacer_arme(self, position_souris):
+        if self.arme_selectionnee:
+            self.arme_selectionnee.position_x = position_souris[0]
+            self.arme_selectionnee.position_y = position_souris[1]
+
+    def relacher_arme(self):
+        if self.arme_selectionnee:
+            self.arme_selectionnee.selectionne = False
+            self.arme_selectionnee = None
+
     def run(self):
 
         while self.running:
@@ -282,6 +308,11 @@ class Map:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.running = False
+                    # if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                    # Obtenir la position du curseur de la souris
+                    # mouse_x, mouse_y = pygame.mouse.get_pos()
+                    # position = (mouse_x,mouse_y)
+                    # self.placer_arme(position)
 
                 self.dessiner_map_1()
                 self.vie_joueur.afficher_vie_joueur(self.screen)
@@ -293,6 +324,10 @@ class Map:
 
                     if monstre.positionX == 165 and monstre.positionY == -66:
                         self.vie_joueur.degat(monstre.degat, self.screen)
+
+                self.afficher_armes(self.screen, self.pixels)
+
+                # self.armes["arme_1"].type_arme(self.screen, self.pixels)
 
                 pygame.display.flip()
 
