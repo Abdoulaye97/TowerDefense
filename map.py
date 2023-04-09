@@ -93,7 +93,7 @@ class Map:
             self.background, (self.window_width, self.window_height))
         # definir l'image de faire de notre Menu
         self.Fond_Menu = pygame.image.load("Assets/Background.png")
-        self.Fond_Map = pygame.image.load("map_1.png")
+        self.Fond_Map = pygame.image.load("Assets/Cartes/map_1.png")
         # instanciation de mon menu
         self.mes_button = {
 
@@ -118,9 +118,9 @@ class Map:
                                     "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Back col_Square Button.png")
         }
         self.cartes = {
-            "carte_1": Carte(170, 250, "map_1.png"),
-            "carte_2": Carte(480, 250, "map_2.png"),
-            "carte_3": Carte(790, 250, "map_1.png")
+            "carte_1": Carte(170, 250, "Assets/Cartes/map_1.png"),
+            "carte_2": Carte(480, 250, "Assets/Cartes/map_2.png"),
+            "carte_3": Carte(790, 250, "Assets/Cartes/map_1.png")
         }
         self.text = {
             "text_easy": AfficheurTexte("Aesy", 150, 360, (128, 128, 128)),

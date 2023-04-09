@@ -4,7 +4,7 @@ import pygame
 class Monstre(pygame.sprite.Sprite):
     def __init__(self, positionX, positionY):
         super().__init__()
-        self.image_monstre = pygame.image.load("alien.png").convert_alpha()
+        self.image_monstre = pygame.image.load("Assets/alien.png").convert_alpha()
         self.image_monstre = pygame.transform.scale(
             self.image_monstre, (30, 30))
         # self.rect = self.image_monstre.get_rect(center=(positionX, positionY))
