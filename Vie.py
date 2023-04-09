@@ -33,7 +33,7 @@ class Vie:
     def degat(self, nbr, screen):
         self.vie_joueur -= nbr
         if self.vie_joueur == 0:
-            self.estVivant=False
+            self.estVivant = False
             time.sleep(1)
             # Afficher le texte "Game over" sur l'écran
             font = pygame.font.SysFont('Comic Sans MS', 50)
@@ -42,17 +42,17 @@ class Vie:
             game_over_rect.centerx = screen.get_rect().centerx
             game_over_rect.centery = screen.get_rect().centery
 
-            # Continuer à afficher le texte "Game over" tant que le joueur est mort
-            while not self.estVivant:
-                screen.blit(game_over_text, game_over_rect)
+            # Afficher le texte "Game over" sur l'écran
+            screen.blit(game_over_text, game_over_rect)
+            pygame.display.flip()
 
-                # Mettre à jour l'écran
-                pygame.display.flip()
-
-                # Vérifier si le joueur a appuyé sur la touche "ESCAPE" pour quitter le jeu
+            # Boucle d'événements pour détecter les événements de fermeture de la fenêtre
+            while True:
                 for event in pygame.event.get():
-                    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                    if event.type == pygame.QUIT:  # Si l'utilisateur clique sur la croix de fermeture de la fenêtre
                         pygame.quit()
                         sys.exit()
-
-
+                    elif event.type == pygame.KEYDOWN:  # Si l'utilisateur appuie sur une touche du clavier
+                        if event.key == pygame.K_ESCAPE:  # Si l'utilisateur appuie sur la touche "ESCAPE"
+                            pygame.quit()
+                            sys.exit()

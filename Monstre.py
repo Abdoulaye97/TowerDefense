@@ -104,87 +104,25 @@ class Monstre(pygame.sprite.Sprite):
 
     def draw_monstre_map_3(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
-        # Dans ces conditions, on vérifie la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
-
-        # Y
         if self.positionY != 327 and self.positionX == 84:
             self.positionY -= self.vitesse
-
-        # X
         elif self.positionX != 123 and self.positionY == 327:
             self.positionX += self.vitesse
-
-        # Y
-        elif self.positionY != 165 and self.positionX == 123:
+        elif self.positionY != 288 and self.positionX == 123:
             self.positionY -= self.vitesse
-
-        # X
-        elif self.positionX != 168 and self.positionY == 165:
+        elif self.positionX != 489 and self.positionY == 288:
             self.positionX += self.vitesse
+        elif self.positionY != 168 and self.positionX==489:
+            self.positionY -=self.vitesse
+        elif self.positionX !=165 and self.positionY==168:
+            self.positionX -=self.vitesse
 
-        # Y
-        elif self.positionY != 84 and self.positionX == 168:
+        elif self.positionX == 165 and self.positionY != -78:
             self.positionY -= self.vitesse
 
-        # X
-        elif self.positionX != 444 and self.positionY == 84:
-            self.positionX += self.vitesse
-
-        # Y
-        elif self.positionY != -72 and self.positionX == 444:
-            self.positionY -= self.vitesse
-
-        # X
-        elif self.positionX != 489 and self.positionY == -72:
-            self.positionX += self.vitesse
-
-        # Y
-        elif self.positionY != 165 and self.positionX == 489:
-            self.positionY -= self.vitesse
-
-        # X
-        elif self.positionX != 528 and self.positionY == 165:
-            self.positionX += self.vitesse
-
-        # Y
-        elif self.positionY != 327 and self.positionX == 528:
-            self.positionY -= self.vitesse
-
-        # X
-        elif self.positionX != 567 and self.positionY == 327:
-            self.positionX += self.vitesse
-
-        # Y
-        elif self.positionY != 165 and self.positionX == 567:
-            self.positionY -= self.vitesse
-
-        # X
-        elif self.positionX != 606 and self.positionY == 165:
-            self.positionX += self.vitesse
-
-        # Y
-        elif self.positionY != 84 and self.positionX == 606:
-            self.positionY -= self.vitesse
-
-        # X
-        elif self.positionX != 123 and self.positionY == 84:
-            self.positionX -= self.vitesse
-
-        # Y
-        elif self.positionY != -72 and self.positionX == 123:
-            self.positionY -= self.vitesse
-
-        # X
-        elif self.positionX != 84 and self.positionY == -72:
-            self.positionX -= self.vitesse
-
-        # Y
-        elif self.positionY != 327 and self.positionX == 84:
-            self.positionY -= self.vitesse
-
-        # Retour à la position de départ
-        if self.positionX == 84 and self.positionY == 327:
-            pass
+            if self.positionX == 165 and self.positionY == -75:
+               # self.position_depart()
+               pass
 
     def update_monstre(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX +
