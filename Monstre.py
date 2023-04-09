@@ -4,7 +4,7 @@ import pygame
 class Monstre(pygame.sprite.Sprite):
     def __init__(self, positionX, positionY):
         super().__init__()
-        self.image_monstre = pygame.image.load("alien.png").convert_alpha()
+        self.image_monstre = pygame.image.load("Assets/alien.png").convert_alpha()
         self.image_monstre = pygame.transform.scale(
             self.image_monstre, (30, 30))
         # self.rect = self.image_monstre.get_rect(center=(positionX, positionY))
@@ -16,7 +16,7 @@ class Monstre(pygame.sprite.Sprite):
         self.direction_y = 0
         self.nbr_vie = 50
         self.nbr_vie_max = 50
-        self.degat = 20
+        self.degat = 25
 
     def position_depart(self):
         self.positionX = 84
@@ -69,11 +69,12 @@ class Monstre(pygame.sprite.Sprite):
         elif self.positionX != 165 and self.positionY == 42:
             self.positionX -= self.vitesse
 
-        elif self.positionX == 165 and self.positionY != -72:
+        elif self.positionX == 165 and self.positionY != -78:
             self.positionY -= self.vitesse
 
-            if self.positionX == 165 and self.positionY == -69:
-                self.position_depart()
+            if self.positionX == 165 and self.positionY == -75:
+               # self.position_depart()
+               pass
 
     def draw_monstre_map_2(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
@@ -90,25 +91,25 @@ class Monstre(pygame.sprite.Sprite):
             self.positionY -= self.vitesse
         elif self.positionX != 489 and self.positionY == 165:
             self.positionX += self.vitesse
-        elif self.positionY !=84 and self.positionX==489:
-            self.positionY -=self.vitesse
-        elif self.positionX !=444 and self.positionY==84:
-            self.positionX -=self.vitesse
+        elif self.positionY != 84 and self.positionX == 489:
+            self.positionY -= self.vitesse
+        elif self.positionX != 444 and self.positionY == 84:
+            self.positionX -= self.vitesse
 
-        elif self.positionX == 444 and self.positionY != -72:
+        elif self.positionX == 444 and self.positionY != -78:
             self.positionY -= self.vitesse
 
-            if self.positionX == 444 and self.positionY == -69:
-                self.position_depart()
-    
+            if self.positionX == 444 and self.positionY == -75:
+             pass
+
     def draw_monstre_map_3(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
-        # Dans ces conditions on verifies la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
-        
+        # Dans ces conditions, on vérifie la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
+
         # Y
         if self.positionY != 327 and self.positionX == 84:
             self.positionY -= self.vitesse
-                
+
         # X
         elif self.positionX != 123 and self.positionY == 327:
             self.positionX += self.vitesse
@@ -116,23 +117,23 @@ class Monstre(pygame.sprite.Sprite):
         # Y
         elif self.positionY != 165 and self.positionX == 123:
             self.positionY -= self.vitesse
-                
+
         # X
         elif self.positionX != 168 and self.positionY == 165:
             self.positionX += self.vitesse
-                
+
         # Y
         elif self.positionY != 84 and self.positionX == 168:
             self.positionY -= self.vitesse
-                
+
         # X
         elif self.positionX != 444 and self.positionY == 84:
             self.positionX += self.vitesse
-                
+
         # Y
         elif self.positionY != -72 and self.positionX == 444:
             self.positionY -= self.vitesse
-                
+
         # X
         elif self.positionX != 489 and self.positionY == -72:
             self.positionX += self.vitesse
@@ -183,8 +184,7 @@ class Monstre(pygame.sprite.Sprite):
 
         # Retour à la position de départ
         if self.positionX == 84 and self.positionY == 327:
-            self.position_depart()
-
+            pass
 
     def update_monstre(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX +

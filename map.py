@@ -7,6 +7,7 @@ from Monstre import Monstre
 from Vie import Vie
 from Armes import Arme
 from Cartes import Carte
+from AfficheurTexte import AfficheurTexte
 
 # def matrix():
 word = [
@@ -70,7 +71,7 @@ class Map:
         self.running = True
         # titre de notre jeu
         pygame.display.set_caption("Tower Defense")
-        # on recuperer notre matrix que l'on stocke sur un variable
+        # on récupère notre matrix que l'on stocke sur un variable
         self.word = word
 
         # Définir la taille de la matrice et des carrés
@@ -90,9 +91,9 @@ class Map:
         self.background = pygame.image.load("Assets/sable.jpg")
         self.background = pygame.transform.scale(
             self.background, (self.window_width, self.window_height))
-        # definir l'image de font de notre Menu
+        # definir l'image de faire de notre Menu
         self.Fond_Menu = pygame.image.load("Assets/Background.png")
-        self.Fond_Map = pygame.image.load("map_1.png")
+        self.Fond_Map = pygame.image.load("Assets/Cartes/map_1.png")
         # instanciation de mon menu
         self.mes_button = {
 
@@ -116,27 +117,37 @@ class Map:
             "button_Retour": Button(520, 420,
                                     "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Back col_Square Button.png")
         }
+        self.cartes = {
+            "carte_1": Carte(170, 250, "Assets/Cartes/map_1.png"),
+            "carte_2": Carte(480, 250, "Assets/Cartes/map_2.png"),
+            "carte_3": Carte(790, 250, "Assets/Cartes/map_1.png")
+        }
+        self.text = {
+            "text_easy": AfficheurTexte("Aesy", 150, 360, (128, 128, 128)),
+            "text_medium": AfficheurTexte("Medium", 430, 360, (128, 128, 128)),
+            "text.difficile": AfficheurTexte("Hight", 750, 360, (128, 128, 128)),
+            "game_over": AfficheurTexte("Game Over", 400, 400, (199, 0, 57))
+        }
         self.etat_button_options = "normal"
+        self.etat = "menu"
         # instancier musique
         self.sound = Sound("Musique/1.mp3")
-        self.etat = "menu"
-        self.mapSelectioner = "map"
-
         self.vie_joueur = Vie()
         self.armes = {
             "arme_1": Arme(655, -10, "Assets/Armes/armes.png", "arme_1")
         }
-        self.armes_placees = []
-        self.arme_selectionnee = None
-        self.mons = Monstre(84, 480)
-        self.monstres = []
-        self.monstres.append(Monstre(84, 480))
-        self.monstres.append(Monstre(84, 552))
-        self.cartes = {
-            "carte_1": Carte(170, 250, "Assets/button_play.png"),
-            "carte_2": Carte(480, 250, "map_2.png"),
-            "carte_3": Carte(790, 250, "map_1.png")
-        }
+        self.vagues_de_monstres = [
+            [Monstre(84, 480), Monstre(84, 552)],
+            [Monstre(84, 480), Monstre(84, 552)],
+            [Monstre(84, 480), Monstre(84, 552)]
+        ]
+        self.monstre = Monstre(84, 480)
+        self.monstres_vague_actuelle = 0
+        self.vague_actuelle = 0
+        self.position_prochaine_vague = 165
+        self.vague_affichee = False
+        # self.monstres.append(Monstre(84, 480))
+        # self.monstres.append(Monstre(84, 552))
 
     def dessiner_map_1(self):
 
@@ -146,13 +157,13 @@ class Map:
                 # Déterminer la position de la cellule dans la grille
                 x = j * self.pixels
                 y = i * self.pixels
-                # on recupere chaque valeur du matrice
+                # on récupère chaque valeur de la matrice
                 cellule = self.word[i][j]
 
                 if cellule == 1:
                     # on charge  image
                     image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionner l'image pour qu'il prend la taille du cellule
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(
@@ -162,7 +173,7 @@ class Map:
                 elif cellule == 0:
                     # on charge notre image
                     image = pygame.image.load("Assets/sable.jpg")
-                    # On redimensionner l'image pour qu'il prend la taille du cellule
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(
@@ -186,13 +197,13 @@ class Map:
                 # Déterminer la position de la cellule dans la grille
                 x = j * self.pixels
                 y = i * self.pixels
-                # on recupere chaque valeur du matrice
+                # on récupère chaque valeur de la matrice
                 cellule = word_2[i][j]
 
                 if cellule == 1:
                     # on charge  image
                     image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionner l'image pour qu'il prend la taille du cellule
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(
@@ -202,7 +213,7 @@ class Map:
                 elif cellule == 0:
                     # on charge notre image
                     image = pygame.image.load("Assets/sable.jpg")
-                    # On redimensionne l'image pour qu'il prend la taille du cellule
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(
@@ -224,13 +235,13 @@ class Map:
                 # Déterminer la position de la cellule dans la grille
                 x = j * self.pixels
                 y = i * self.pixels
-                # on recupere chaque valeur du matrice
+                # on récupère chaque valeur de la matrice
                 cellule = word_3[i][j]
 
                 if cellule == 1:
                     # on charge  image
                     image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionner l'image pour qu'il prend la taille du cellule
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(
@@ -240,7 +251,7 @@ class Map:
                 elif cellule == 0:
                     # on charge notre image
                     image = pygame.image.load("Assets/sable.jpg")
-                    # On redimensionne l'image pour qu'il prend la taille du cellule
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(
@@ -285,22 +296,37 @@ class Map:
         pygame.display.flip()
 
     def MenuMap(self):
+        # On charge notre fond d'ecran
         self.screen.blit(self.Fond_Menu, (0, 0))
+        # On affiche le premier map pour permettre au joueur de choisir
         self.screen.blit(self.cartes["carte_1"].image, self.cartes["carte_1"].rect)
+        # On lui indique le niveau de diffultite du map
+        self.text["text_easy"].afficher_texte(self.screen)
+        # On affiche la deuxime map
         self.screen.blit(self.cartes["carte_2"].image, self.cartes["carte_2"].rect)
+        # On lui indique le niveau de diffultite du map
+        self.text["text_medium"].afficher_texte(self.screen)
+        # On affiche la troisime map
         self.screen.blit(self.cartes["carte_3"].image, self.cartes["carte_3"].rect)
+        # On lui indique le niveau de diffultite du map
+        self.text["text.difficile"].afficher_texte(self.screen)
 
+        # On parcourt les evenements
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                # Si l'utilisateur clique sur le premiere map
                 if self.cartes["carte_1"].is_clicked_map(pygame.mouse.get_pos()):
+                    # On change l'etat du jeu qui va charger le map choisie
                     self.etat = "jeu_map1"
-
+                # Si l'utilisateur clique sur le deuxime map
                 elif self.cartes["carte_2"].is_clicked_map(pygame.mouse.get_pos()):
+                    # On change l'etat du jeu qui va charger le map choisie
                     self.etat = "jeu_map2"
-
+                # Si l'utilisateur clique sur le troisime map
                 elif self.cartes["carte_3"].is_clicked_map(pygame.mouse.get_pos()):
+                    # On change l'etat du jeu qui charger le map choisie
                     self.etat = "jeu_map3"
 
         pygame.display.flip()
@@ -353,7 +379,7 @@ class Map:
                          self.mes_button["button_SousMenuStopAudio"].rect)
         self.screen.blit(
             self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
-        # On écoute les evenements sur les Bouttons qu'on attribue des etats et chaque etats correspond à un fenetre ou une action
+        # On écoute les evenements sur les Bouttons qu'on attribue des etats et chaque etats correspond à un fenetre ou une action.
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -362,7 +388,7 @@ class Map:
                     self.etat = "menu"
 
                 elif self.mes_button["button_SousMenuMusique"].is_clicked(pygame.mouse.get_pos()):
-                    # On definie aussi des etats au niveaux des bouttons du Sous Menu Option
+                    # On définit aussi des etats aux niveaux des bouttons du Sous Menue Option
                     self.etat_button_options = "musique"
 
                     if self.etat_button_options == "musique":
@@ -391,6 +417,20 @@ class Map:
 
         pygame.display.flip()
 
+    def afficher_message_vague(self):
+        font = pygame.font.SysFont(None, 48)
+        message = f"Vague {self.vague_actuelle + 1} !"
+        texte = font.render(message, True, (255, 255, 255))
+        position = texte.get_rect(center=(self.window_width // 2, self.window_height // 2))
+        self.screen.blit(texte, position)
+        pygame.display.update()
+        pygame.time.delay(3000)
+
+    def verifier_degats_monstre(self, posX, posY, degat, screen):
+        if posX == 165 and posY == -69:
+            self.vie_joueur.degat(degat, screen)
+        pygame.display.flip()
+
     def run(self):
 
         while self.running:
@@ -412,30 +452,66 @@ class Map:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.running = False
-                self.dessiner_map_1()
-                self.vie_joueur.afficher_vie_joueur(self.screen)
 
-                for monstre in self.monstres:
+                self.dessiner_map_1()
+
+                # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
+                declancher_prochaine_vague = all(
+                    monstre.positionX == self.position_prochaine_vague and monstre.positionY == -78 for monstre in
+                    self.vagues_de_monstres[self.vague_actuelle])
+                if declancher_prochaine_vague:
+                    self.vague_actuelle += 1
+                    self.afficher_message_vague()
+
+                # Afficher les monstres de la vague actuelle
+                for monstre in self.vagues_de_monstres[self.vague_actuelle]:
                     if self.vie_joueur.vie_joueur > 0:
                         monstre.draw_monstre_map_1(self.screen, self.pixels)
                         monstre.update_bar_de_vie(self.screen)
-                        if monstre.positionX == 165 and monstre.positionY == -66:
-                            self.vie_joueur.degat(monstre.degat, self.screen)
+
+                    if monstre.positionX == 165 and monstre.positionY == -69:
+                        self.vie_joueur.degat(monstre.degat, self.screen)
+
+                    if self.vie_joueur.vie_joueur == 0:
+                        self.text["game_over"].afficher_texte(self.screen)
+
+                self.vie_joueur.afficher_vie_joueur(self.screen)
+
+                pygame.display.update()
+
             # Map 2
             elif self.etat == "jeu_map2":
 
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.running = False
-                self.dessiner_map_2()
-                self.vie_joueur.afficher_vie_joueur(self.screen)
 
-                for monstre in self.monstres:
+                self.dessiner_map_2()
+
+                # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
+                declancher_prochaine_vague = all(
+                    monstre.positionX == 444 and monstre.positionY == -78 for monstre in
+                    self.vagues_de_monstres[self.vague_actuelle])
+                if declancher_prochaine_vague:
+                    self.vague_actuelle += 1
+                    self.afficher_message_vague()
+
+                # Afficher les monstres de la vague actuelle
+                for monstre in self.vagues_de_monstres[self.vague_actuelle]:
                     if self.vie_joueur.vie_joueur > 0:
                         monstre.draw_monstre_map_2(self.screen, self.pixels)
                         monstre.update_bar_de_vie(self.screen)
-                        if monstre.positionX == 444 and monstre.positionY == -66:
-                            self.vie_joueur.degat(monstre.degat, self.screen)
+
+                    if monstre.positionX == 444 and monstre.positionY == -69:
+                        self.vie_joueur.degat(monstre.degat, self.screen)
+
+                    if self.vie_joueur.vie_joueur == 0:
+                        self.text["game_over"].afficher_texte(self.screen)
+
+                self.vie_joueur.afficher_vie_joueur(self.screen)
+
+                pygame.display.update()
+
 
             # Map 3
             elif self.etat == "jeu_map3":
@@ -444,14 +520,29 @@ class Map:
                     if event.type == pygame.QUIT:
                         self.running = False
                 self.dessiner_map_3()
+                # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
+                declancher_prochaine_vague = all(
+                    monstre.positionX == 84 and monstre.positionY == 327 for monstre in
+                    self.vagues_de_monstres[self.vague_actuelle])
+                if declancher_prochaine_vague:
+                    self.vague_actuelle += 1
+                    self.afficher_message_vague()
+
+                # Afficher les monstres de la vague actuelle
+                for monstre in self.vagues_de_monstres[self.vague_actuelle]:
+                    if self.vie_joueur.vie_joueur > 0:
+                        monstre.draw_monstre_map_3(self.screen, self.pixels)
+                        monstre.update_bar_de_vie(self.screen)
+
+                    if monstre.positionX == 84 and monstre.positionY == 321:
+                        self.vie_joueur.degat(monstre.degat, self.screen)
+
+                    if self.vie_joueur.vie_joueur == 0:
+                        self.text["game_over"].afficher_texte(self.screen)
+
                 self.vie_joueur.afficher_vie_joueur(self.screen)
 
-                for monstre in self.monstres:
-                    if self.vie_joueur.vie_joueur > 0:
-                        monstre.draw_monstre_map_2(self.screen, self.pixels)
-                        monstre.update_bar_de_vie(self.screen)
-                        if monstre.positionX == 444 and monstre.positionY == -66:
-                            self.vie_joueur.degat(monstre.degat, self.screen)
+                pygame.display.update()
 
             pygame.display.flip()
 

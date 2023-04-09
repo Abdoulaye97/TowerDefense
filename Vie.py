@@ -1,4 +1,8 @@
+import sys
+import time
+
 import pygame
+from AfficheurTexte import AfficheurTexte
 
 
 class Vie:
@@ -7,6 +11,7 @@ class Vie:
         self.position_Vie_Y = 10
         self.vie_joueur = 100
         self.vie_joueur_max = 100
+        self.estVivant = True
 
     def afficher_vie_joueur(self, surface):
         couleur_arriere_plan = (60, 63, 60)
@@ -28,23 +33,26 @@ class Vie:
     def degat(self, nbr, screen):
         self.vie_joueur -= nbr
         if self.vie_joueur == 0:
-            # Le joueur est mort, afficher un message et quitter le jeu
-            font = pygame.font.Font(None, 36)
-            message = font.render("Game over!", True, (255, 0, 0))
-            screen.blit(message, (250, 250))
-            pygame.display.update()
+            self.estVivant=False
+            time.sleep(1)
+            # Afficher le texte "Game over" sur l'écran
+            font = pygame.font.SysFont('Comic Sans MS', 50)
+            game_over_text = font.render('Game over', True, (255, 0, 0))
+            game_over_rect = game_over_text.get_rect()
+            game_over_rect.centerx = screen.get_rect().centerx
+            game_over_rect.centery = screen.get_rect().centery
 
-    def health_player(self, screen):
-        if self.positionX == 165 and self.positionY == -72:
-            self.health -= 1
-            print(self.health)
-            if self.health == 0:
-                # Le joueur est mort, afficher un message et quitter le jeu
-                message = self.font.render("Game over!", True, (255, 0, 0))
-                screen.blit(message, (250, 250))
-                pygame.display.update()
-                pygame.time.delay(2000)
-                pygame.quit()
-            else:
-                # Le joueur a encore de la vie, réinitialiser la position du monstre et du joueur
-                self.position_depart()
+            # Continuer à afficher le texte "Game over" tant que le joueur est mort
+            while not self.estVivant:
+                screen.blit(game_over_text, game_over_rect)
+
+                # Mettre à jour l'écran
+                pygame.display.flip()
+
+                # Vérifier si le joueur a appuyé sur la touche "ESCAPE" pour quitter le jeu
+                for event in pygame.event.get():
+                    if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+
+
