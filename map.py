@@ -48,15 +48,15 @@ word_2 = [
 
 word_3 = [
 
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
@@ -120,7 +120,7 @@ class Map:
         self.cartes = {
             "carte_1": Carte(170, 250, "Assets/Cartes/map_1.png"),
             "carte_2": Carte(480, 250, "Assets/Cartes/map_2.png"),
-            "carte_3": Carte(790, 250, "Assets/Cartes/map_1.png")
+            "carte_3": Carte(790, 250, "Assets/Cartes/map_3.png")
         }
         self.text = {
             "text_easy": AfficheurTexte("Aesy", 150, 360, (128, 128, 128)),
@@ -138,8 +138,7 @@ class Map:
         }
         self.vagues_de_monstres = [
             [Monstre(84, 480), Monstre(84, 552)],
-            [Monstre(84, 480), Monstre(84, 552)],
-            [Monstre(84, 480), Monstre(84, 552)]
+            [Monstre(84, 480), Monstre(84, 552), Monstre(84, 624)]
         ]
         self.monstre = Monstre(84, 480)
         self.monstres_vague_actuelle = 0
@@ -426,11 +425,6 @@ class Map:
         pygame.display.update()
         pygame.time.delay(3000)
 
-    def verifier_degats_monstre(self, posX, posY, degat, screen):
-        if posX == 165 and posY == -69:
-            self.vie_joueur.degat(degat, screen)
-        pygame.display.flip()
-
     def run(self):
 
         while self.running:
@@ -472,9 +466,6 @@ class Map:
                     if monstre.positionX == 165 and monstre.positionY == -69:
                         self.vie_joueur.degat(monstre.degat, self.screen)
 
-                    if self.vie_joueur.vie_joueur == 0:
-                        self.text["game_over"].afficher_texte(self.screen)
-
                 self.vie_joueur.afficher_vie_joueur(self.screen)
 
                 pygame.display.update()
@@ -505,9 +496,6 @@ class Map:
                     if monstre.positionX == 444 and monstre.positionY == -69:
                         self.vie_joueur.degat(monstre.degat, self.screen)
 
-                    if self.vie_joueur.vie_joueur == 0:
-                        self.text["game_over"].afficher_texte(self.screen)
-
                 self.vie_joueur.afficher_vie_joueur(self.screen)
 
                 pygame.display.update()
@@ -522,7 +510,7 @@ class Map:
                 self.dessiner_map_3()
                 # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
                 declancher_prochaine_vague = all(
-                    monstre.positionX == 84 and monstre.positionY == 327 for monstre in
+                    monstre.positionX == self.position_prochaine_vague and monstre.positionY == -78 for monstre in
                     self.vagues_de_monstres[self.vague_actuelle])
                 if declancher_prochaine_vague:
                     self.vague_actuelle += 1
@@ -534,11 +522,8 @@ class Map:
                         monstre.draw_monstre_map_3(self.screen, self.pixels)
                         monstre.update_bar_de_vie(self.screen)
 
-                    if monstre.positionX == 84 and monstre.positionY == 321:
+                    if monstre.positionX == 165 and monstre.positionY == -69:
                         self.vie_joueur.degat(monstre.degat, self.screen)
-
-                    if self.vie_joueur.vie_joueur == 0:
-                        self.text["game_over"].afficher_texte(self.screen)
 
                 self.vie_joueur.afficher_vie_joueur(self.screen)
 
