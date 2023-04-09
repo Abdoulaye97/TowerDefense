@@ -123,9 +123,9 @@ class Map:
             "carte_3": Carte(790, 250, "Assets/Cartes/map_3.png")
         }
         self.text = {
-            "text_easy": AfficheurTexte("Aesy", 150, 360, (128, 128, 128)),
-            "text_medium": AfficheurTexte("Medium", 430, 360, (128, 128, 128)),
-            "text.difficile": AfficheurTexte("Hight", 750, 360, (128, 128, 128)),
+            "text_easy": AfficheurTexte("Facile", 150, 360, (128, 128, 128)),
+            "text_medium": AfficheurTexte("Moyen", 430, 360, (128, 128, 128)),
+            "text.difficile": AfficheurTexte("Difficile", 750, 360, (128, 128, 128)),
             "game_over": AfficheurTexte("Game Over", 400, 400, (199, 0, 57))
         }
         self.etat_button_options = "normal"
@@ -189,7 +189,7 @@ class Map:
                 elif cellule == 3:
                     
                     # on charge notre image
-                    image = pygame.image.load("Assets\Armes\slicedsprite_glowbox.png")
+                    image = pygame.image.load("Assets/Armes/slicedsprite_glowbox.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -200,7 +200,7 @@ class Map:
                 elif cellule == 4:
                     
                     # on charge notre image
-                    image = pygame.image.load("Assets\Armes\Building5 laboratory.png")
+                    image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -252,7 +252,7 @@ class Map:
                 elif cellule == 3:
                     
                     # on charge notre image
-                    image = pygame.image.load("Assets\Armes\slicedsprite_glowbox.png")
+                    image = pygame.image.load("Assets/Armes/slicedsprite_glowbox.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -263,7 +263,7 @@ class Map:
                 elif cellule == 4:
                     
                     # on charge notre image
-                    image = pygame.image.load("Assets\Armes\Building5 laboratory.png")
+                    image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -312,7 +312,7 @@ class Map:
                 elif cellule == 3:
                     
                     # on charge notre image
-                    image = pygame.image.load("Assets\Armes\slicedsprite_glowbox.png")
+                    image = pygame.image.load("Assets/Armes/slicedsprite_glowbox.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -323,7 +323,7 @@ class Map:
                 elif cellule == 4:
                     
                     # on charge notre image
-                    image = pygame.image.load("Assets\Armes\Building5 laboratory.png")
+                    image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
