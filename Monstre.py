@@ -40,20 +40,20 @@ class Monstre(pygame.sprite.Sprite):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     self.direction_y = -1
-                    self.positionY += self.direction_y * 5
+                    self.positionY += self.direction_y * 3
                 elif event.key == pygame.K_DOWN:
                     self.direction_y = 1
-                    self.positionY += self.direction_y * 5
+                    self.positionY += self.direction_y * 3
                 elif event.key == pygame.K_LEFT:
                     self.direction_x = -1
                     self.positionX += self.direction_x * 5
                 elif event.key == pygame.K_RIGHT:
                     self.direction_x = 1
-                    self.positionX += self.direction_x * 5
+                    self.positionX += self.direction_x * 3
 
         print("{0},{1}".format(self.positionX, self.positionY))
 
-    def draw_monstre(self, screen, pixels):
+    def draw_monstre_map_1(self, screen, pixels):
         # on affiche le joueur
         screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
         # Dans ces conditions on verifies la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
@@ -75,6 +75,117 @@ class Monstre(pygame.sprite.Sprite):
             if self.positionX == 165 and self.positionY == -69:
                 self.position_depart()
 
+    def draw_monstre_map_2(self, screen, pixels):
+        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
+        # Dans ces conditions on verifies la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
+        if self.positionY != 327 and self.positionX == 84:
+            self.positionY -= self.vitesse
+        elif self.positionX != 123 and self.positionY == 327:
+            self.positionX += self.vitesse
+        elif self.positionY != 288 and self.positionX == 123:
+            self.positionY -= self.vitesse
+        elif self.positionX != 168 and self.positionY == 288:
+            self.positionX += self.vitesse
+        elif self.positionY != 165 and self.positionX == 168:
+            self.positionY -= self.vitesse
+        elif self.positionX != 489 and self.positionY == 165:
+            self.positionX += self.vitesse
+        elif self.positionY !=84 and self.positionX==489:
+            self.positionY -=self.vitesse
+        elif self.positionX !=444 and self.positionY==84:
+            self.positionX -=self.vitesse
+
+        elif self.positionX == 444 and self.positionY != -72:
+            self.positionY -= self.vitesse
+
+            if self.positionX == 444 and self.positionY == -69:
+                self.position_depart()
+    
+    def draw_monstre_map_3(self, screen, pixels):
+        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
+        # Dans ces conditions on verifies la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
+        
+        # Y
+        if self.positionY != 327 and self.positionX == 84:
+            self.positionY -= self.vitesse
+                
+        # X
+        elif self.positionX != 123 and self.positionY == 327:
+            self.positionX += self.vitesse
+
+        # Y
+        elif self.positionY != 165 and self.positionX == 123:
+            self.positionY -= self.vitesse
+                
+        # X
+        elif self.positionX != 168 and self.positionY == 165:
+            self.positionX += self.vitesse
+                
+        # Y
+        elif self.positionY != 84 and self.positionX == 168:
+            self.positionY -= self.vitesse
+                
+        # X
+        elif self.positionX != 444 and self.positionY == 84:
+            self.positionX += self.vitesse
+                
+        # Y
+        elif self.positionY != -72 and self.positionX == 444:
+            self.positionY -= self.vitesse
+                
+        # X
+        elif self.positionX != 489 and self.positionY == -72:
+            self.positionX += self.vitesse
+
+        # Y
+        elif self.positionY != 165 and self.positionX == 489:
+            self.positionY -= self.vitesse
+
+        # X
+        elif self.positionX != 528 and self.positionY == 165:
+            self.positionX += self.vitesse
+
+        # Y
+        elif self.positionY != 327 and self.positionX == 528:
+            self.positionY -= self.vitesse
+
+        # X
+        elif self.positionX != 567 and self.positionY == 327:
+            self.positionX += self.vitesse
+
+        # Y
+        elif self.positionY != 165 and self.positionX == 567:
+            self.positionY -= self.vitesse
+
+        # X
+        elif self.positionX != 606 and self.positionY == 165:
+            self.positionX += self.vitesse
+
+        # Y
+        elif self.positionY != 84 and self.positionX == 606:
+            self.positionY -= self.vitesse
+
+        # X
+        elif self.positionX != 123 and self.positionY == 84:
+            self.positionX -= self.vitesse
+
+        # Y
+        elif self.positionY != -72 and self.positionX == 123:
+            self.positionY -= self.vitesse
+
+        # X
+        elif self.positionX != 84 and self.positionY == -72:
+            self.positionX -= self.vitesse
+
+        # Y
+        elif self.positionY != 327 and self.positionX == 84:
+            self.positionY -= self.vitesse
+
+        # Retour à la position de départ
+        if self.positionX == 84 and self.positionY == 327:
+            self.position_depart()
+
+
     def update_monstre(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX +
                                          pixels, self.positionY + pixels))
@@ -82,5 +193,3 @@ class Monstre(pygame.sprite.Sprite):
     def getPositionY(self):
         print("Position X et Y: {0},{1}".format(self.positionX, self.positionY))
         # print("Taille {0}".format(self.image_monstre.get_size()))
-
-
