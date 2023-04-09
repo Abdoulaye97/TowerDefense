@@ -12,18 +12,18 @@ from AfficheurTexte import AfficheurTexte
 # def matrix():
 word = [
 
-    [1, 1, 1, 3, 1, 0, 1, 3, 1, 1, 1, 1, 1, 3, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 3, 1, 0, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 4, 1, 3, 1, 3, 1, 4, 1, 3, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 3, 1, 3, 1, 4, 1, 3, 1, 3, 1, 3, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 3, 1, 0, 1, 3, 1, 3, 1, 3, 1, 3, 1, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
 
 ]
@@ -31,36 +31,36 @@ word = [
 word_2 = [
 
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 3, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 4, 1, 1, 1, 4, 1, 1, 1, 1, 1, 3, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 3, 1, 3, 1, 3, 1, 3, 1, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 4, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 3, 1, 1, 0, 1, 3, 1, 3, 1, 3, 1, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 3, 1, 4, 1, 3, 1, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 4, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 4, 1, 1, 0, 1, 3, 1, 4, 1, 3, 1, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 3, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 3, 1, 0, 0, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 3, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
 
 ]
 
 word_3 = [
 
     [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 3, 1, 0, 1, 3, 1, 1, 4, 1, 1, 1, 4, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 4, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 3, 1, 0, 1, 3, 1, 3, 1, 3, 1, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 3, 1, 0, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 1, 3, 1, 3, 1, 3, 1, 3, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 3, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 4, 1, 0, 1, 4, 1, 3, 1, 3, 1, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 4, 1, 1, 1, 4, 1, 1, 1, 1, 0, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 4, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 1, 4, 1, 3, 1, 1, 1, 3, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 3, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
+    [1, 1, 1, 0, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
 
 ]
 
@@ -92,6 +92,7 @@ class Map:
         self.background = pygame.transform.scale(
             self.background, (self.window_width, self.window_height))
         # definir l'image de faire de notre Menu
+
         self.Fond_Menu = pygame.image.load("Assets/Background.png")
         self.Fond_Map = pygame.image.load("Assets/Cartes/map_1.png")
         # instanciation de mon menu
@@ -185,11 +186,17 @@ class Map:
                 # rect = image.get_rect(
                 #   center=(x + self.pixels / 2, y + self.pixels / 2))
                 # self.screen.blit(image, rect)
-                
+
                 elif cellule == 3:
-                    
+                    image = pygame.image.load("Assets/Armes/wals.png")
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
                     # on charge notre image
-                    image = pygame.image.load("Assets/Armes/slicedsprite_glowbox.png")
+                    image = pygame.image.load("Assets/Armes/armes.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -198,7 +205,13 @@ class Map:
                     self.screen.blit(image, rect)
 
                 elif cellule == 4:
-                    
+                    image = pygame.image.load("Assets/Armes/wals.png")
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
                     # on charge notre image
                     image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
@@ -207,7 +220,6 @@ class Map:
                     rect = image.get_rect(
                         center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
-
 
         pygame.display.flip()
 
@@ -248,11 +260,17 @@ class Map:
                     # rect = image.get_rect(
                     #   center=(x + self.pixels / 2, y + self.pixels / 2))
                     # self.screen.blit(image, rect)
-                
+
                 elif cellule == 3:
-                    
+                    image = pygame.image.load("Assets/Armes/wals.png")
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
                     # on charge notre image
-                    image = pygame.image.load("Assets/Armes/slicedsprite_glowbox.png")
+                    image = pygame.image.load("Assets/Armes/armes.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -261,7 +279,13 @@ class Map:
                     self.screen.blit(image, rect)
 
                 elif cellule == 4:
-                    
+                    image = pygame.image.load("Assets/Armes/wals.png")
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
                     # on charge notre image
                     image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
@@ -270,6 +294,7 @@ class Map:
                     rect = image.get_rect(
                         center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
+        pygame.display.flip()
 
     def dessiner_map_3(self):
 
@@ -308,20 +333,32 @@ class Map:
                     # rect = image.get_rect(
                     #   center=(x + self.pixels / 2, y + self.pixels / 2))
                     # self.screen.blit(image, 
-                    
+
                 elif cellule == 3:
-                    
-                    # on charge notre image
-                    image = pygame.image.load("Assets/Armes/slicedsprite_glowbox.png")
+                    image = pygame.image.load("Assets/Armes/wals.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
                     rect = image.get_rect(
                         center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
-                
+                    # on charge notre image
+                    image = pygame.image.load("Assets/Armes/armes.png")
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
+
                 elif cellule == 4:
-                    
+                    image = pygame.image.load("Assets/Armes/wals.png")
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
                     # on charge notre image
                     image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
@@ -330,7 +367,6 @@ class Map:
                     rect = image.get_rect(
                         center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
-
 
         pygame.display.flip()
 
