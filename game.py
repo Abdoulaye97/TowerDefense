@@ -8,62 +8,8 @@ from Vie import Vie
 from Armes import Arme
 from Cartes import Carte
 from AfficheurTexte import AfficheurTexte
-
-# def matrix():
-word = [
-
-    [1, 1, 1, 3, 1, 0, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 4, 1, 3, 1, 3, 1, 4, 1, 3, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 3, 1, 3, 1, 4, 1, 3, 1, 3, 1, 3, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 1, 3, 1, 3, 1, 3, 1, 3, 1, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-
-]
-
-word_2 = [
-
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 3, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 4, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 3, 1, 4, 1, 3, 1, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 4, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 4, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 4, 1, 1, 0, 1, 3, 1, 4, 1, 3, 1, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 0, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-
-]
-
-word_3 = [
-
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 3, 1, 0, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 4, 1, 0, 1, 4, 1, 3, 1, 3, 1, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 4, 1, 1, 1, 4, 1, 1, 1, 1, 0, 1, 3, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 4, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 1, 4, 1, 3, 1, 1, 1, 3, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 3, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-    [1, 1, 1, 0, 1, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-
-]
-
+from Tourelle import Tourelle
+from word import *
 
 class Map:
     def __init__(self):
@@ -73,16 +19,12 @@ class Map:
         pygame.display.set_caption("Tower Defense")
         # on récupère notre matrix que l'on stocke sur un variable
         self.word = word
-
         # Définir la taille de la matrice et des carrés
         self.matrix_width = len(self.word[0])
         self.matrix_height = len(self.word)
         # la taille de chaque cellule dans le fenetre qu'on met  en pixels
-
         self.pixels = 40
-
         # Définir la taille de la fenêtre en fonction de notre matrice
-
         self.window_width = self.matrix_width * self.pixels
         self.window_height = self.matrix_height * self.pixels
         self.screen = pygame.display.set_mode(
@@ -97,26 +39,15 @@ class Map:
         self.Fond_Map = pygame.image.load("Assets/Cartes/map_1.png")
         # instanciation de mon menu
         self.mes_button = {
-
-            "button_Menu": Button(500, 100,
-
-                                  "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Menu  col_Button.png"),
-            "button_NewGame": Button(500, 220,
-                                     "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/New Game  col_Button.png"),
-            "button_Options": Button(500, 340,
-                                     "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Options  col_Button.png"),
-            "button_Quitt": Button(500, 460,
-                                   "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Quit  col_Button.png"),
-            "button_SousMenuMusique": Button(400, 100,
-                                             "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Music col_Square Button.png"),
-            "button_SousMenuStopMusique": Button(620, 100,
-                                                 "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/X col_Square Button.png"),
-            "button_SousMenuAudio": Button(400, 250,
-                                           "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Audio col_Square Button.png"),
-            "button_SousMenuStopAudio": Button(620, 250,
-                                               "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/X col_Square Button.png"),
-            "button_Retour": Button(520, 420,
-                                    "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Back col_Square Button.png")
+            "button_Menu": Button(500, 100,"Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Menu  col_Button.png"),
+            "button_NewGame": Button(500, 220,"Assets/Menu Buttons/Large Buttons/Colored Large Buttons/New Game  col_Button.png"),
+            "button_Options": Button(500, 340,"Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Options  col_Button.png"),
+            "button_Quitt": Button(500, 460,"Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Quit  col_Button.png"),
+            "button_SousMenuMusique": Button(400, 100,"Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Music col_Square Button.png"),
+            "button_SousMenuStopMusique": Button(620, 100,"Assets/Menu Buttons/Square Buttons/Colored Square Buttons/X col_Square Button.png"),
+            "button_SousMenuAudio": Button(400, 250,"Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Audio col_Square Button.png"),
+            "button_SousMenuStopAudio": Button(620, 250,"Assets/Menu Buttons/Square Buttons/Colored Square Buttons/X col_Square Button.png"),
+            "button_Retour": Button(520, 420,"Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Back col_Square Button.png")
         }
         self.cartes = {
             "carte_1": Carte(170, 250, "Assets/Cartes/map_1.png"),
@@ -146,10 +77,8 @@ class Map:
         self.vague_actuelle = 0
         self.position_prochaine_vague = 165
         self.vague_affichee = False
-        # self.monstres.append(Monstre(84, 480))
-        # self.monstres.append(Monstre(84, 552))
 
-    def dessiner_map_1(self):
+    def draw_map(self, world):
 
         for i in range(self.matrix_height):
             # Boucler sur chaque colonne de la matric
@@ -158,7 +87,8 @@ class Map:
                 x = j * self.pixels
                 y = i * self.pixels
                 # on récupère chaque valeur de la matrice
-                cellule = self.word[i][j]
+                
+                cellule = world[i][j]
 
                 if cellule == 1:
                     # on charge  image
@@ -182,95 +112,17 @@ class Map:
 
                 elif cellule == 2:
                     pygame.draw.rect(self.screen, (171, 178, 185), pygame.Rect(x, y, self.pixels, 40))
-                # image = pygame.transform.scale(image,(self.pixels, 40))
-                # rect = image.get_rect(
-                #   center=(x + self.pixels / 2, y + self.pixels / 2))
-                # self.screen.blit(image, rect)
 
                 elif cellule == 3:
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-                    # on charge notre image
-                    image = pygame.image.load("Assets/Armes/armes.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-                elif cellule == 4:
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-                    # on charge notre image
-                    image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-        pygame.display.flip()
-
-    def dessiner_map_2(self):
-
-        for i in range(self.matrix_height):
-            # Boucler sur chaque colonne de la matric
-            for j in range(self.matrix_width):
-                # Déterminer la position de la cellule dans la grille
-                x = j * self.pixels
-                y = i * self.pixels
-                # on récupère chaque valeur de la matrice
-                cellule = word_2[i][j]
-
-                if cellule == 1:
-                    # on charge  image
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-                elif cellule == 0:
-                    # on charge notre image
-                    image = pygame.image.load("Assets/sable.jpg")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-                elif cellule == 2:
-                    pygame.draw.rect(self.screen, (171, 178, 185), pygame.Rect(x, y, self.pixels, 40))
-                    # image = pygame.transform.scale(image,(self.pixels, 40))
+                    # image = pygame.image.load("Assets/Armes/wals.png")
+                    # # On redimensionne l'image pour qu'il prenne la taille de la cellule
+                    # image = pygame.transform.scale(image, (self.pixels, 40))
+                    # # on recupere un rectangle de l'image
                     # rect = image.get_rect(
-                    #   center=(x + self.pixels / 2, y + self.pixels / 2))
+                    #     center=(x + self.pixels / 2, y + self.pixels / 2))
                     # self.screen.blit(image, rect)
-
-                elif cellule == 3:
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
                     # on charge notre image
-                    image = pygame.image.load("Assets/Armes/armes.png")
+                    image = pygame.image.load("Assets/Armes/armes-removebg-preview.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
@@ -283,8 +135,7 @@ class Map:
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
                     # on charge notre image
                     image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
@@ -294,79 +145,10 @@ class Map:
                     rect = image.get_rect(
                         center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
-        pygame.display.flip()
 
-    def dessiner_map_3(self):
-
-        for i in range(self.matrix_height):
-            # Boucler sur chaque colonne de la matric
-            for j in range(self.matrix_width):
-                # Déterminer la position de la cellule dans la grille
-                x = j * self.pixels
-                y = i * self.pixels
-                # on récupère chaque valeur de la matrice
-                cellule = word_3[i][j]
-
-                if cellule == 1:
-                    # on charge  image
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-                elif cellule == 0:
-                    # on charge notre image
-                    image = pygame.image.load("Assets/sable.jpg")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-                elif cellule == 2:
-                    pygame.draw.rect(self.screen, (171, 178, 185), pygame.Rect(x, y, self.pixels, 40))
-                    # image = pygame.transform.scale(image,(self.pixels, 40))
-                    # rect = image.get_rect(
-                    #   center=(x + self.pixels / 2, y + self.pixels / 2))
-                    # self.screen.blit(image, 
-
-                elif cellule == 3:
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-                    # on charge notre image
-                    image = pygame.image.load("Assets/Armes/armes.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-                elif cellule == 4:
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-                    # on charge notre image
-                    image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
+                elif cellule == 5:
+                    tourelle = Tourelle()
+                    self.screen.tourelle.draw()
 
         pygame.display.flip()
 
@@ -472,16 +254,11 @@ class Map:
     def MenuOptions(self):
         #   On affiche les Boutons du Sous Menues Options
         self.screen.blit(self.Fond_Menu, (0, 0))
-        self.screen.blit(self.mes_button["button_SousMenuMusique"].image,
-                         self.mes_button["button_SousMenuMusique"].rect)
-        self.screen.blit(self.mes_button["button_SousMenuStopMusique"].image,
-                         self.mes_button["button_SousMenuStopMusique"].rect)
-        self.screen.blit(self.mes_button["button_SousMenuAudio"].image,
-                         self.mes_button["button_SousMenuAudio"].rect)
-        self.screen.blit(self.mes_button["button_SousMenuStopAudio"].image,
-                         self.mes_button["button_SousMenuStopAudio"].rect)
-        self.screen.blit(
-            self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
+        self.screen.blit(self.mes_button["button_SousMenuMusique"].image,self.mes_button["button_SousMenuMusique"].rect)
+        self.screen.blit(self.mes_button["button_SousMenuStopMusique"].image,self.mes_button["button_SousMenuStopMusique"].rect)
+        self.screen.blit(self.mes_button["button_SousMenuAudio"].image,self.mes_button["button_SousMenuAudio"].rect)
+        self.screen.blit(self.mes_button["button_SousMenuStopAudio"].image,self.mes_button["button_SousMenuStopAudio"].rect)
+        self.screen.blit(self.mes_button["button_Retour"].image, self.mes_button["button_Retour"].rect)
         # On écoute les evenements sur les Bouttons qu'on attribue des etats et chaque etats correspond à un fenetre ou une action.
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -544,14 +321,27 @@ class Map:
             elif self.etat == "options":
                 # On affiche le sous menu d'options
                 self.MenuOptions()
+                
             # Map 1
             elif self.etat == "jeu_map1":
-
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.running = False
+                self.draw_map(word)
 
-                self.dessiner_map_1()
+                
+                # if self.etat == "jeu_map1":
+                #     for event in pygame.event.get():
+                #         if event.type == pygame.QUIT:
+                #             self.running = False
+                #     self.draw_map(word)
+                # elif self.etat == "jeu_map2":
+                #     for event in pygame.event.get():
+                #         if event.type == pygame.QUIT:
+                #             self.running = False
+                #     self.draw_map(word_2)
+                
+
 
                 # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
                 declancher_prochaine_vague = all(
@@ -581,7 +371,7 @@ class Map:
                     if event.type == pygame.QUIT:
                         self.running = False
 
-                self.dessiner_map_2()
+                self.draw_map(word_2)
 
                 # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
                 declancher_prochaine_vague = all(
@@ -611,7 +401,7 @@ class Map:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         self.running = False
-                self.dessiner_map_3()
+                self.draw_map(word_3)
                 # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
                 declancher_prochaine_vague = all(
                     monstre.positionX == self.position_prochaine_vague and monstre.positionY == -78 for monstre in

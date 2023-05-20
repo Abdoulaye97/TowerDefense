@@ -125,8 +125,7 @@ class Monstre(pygame.sprite.Sprite):
                pass
 
     def update_monstre(self, screen, pixels):
-        screen.blit(self.image_monstre, (self.positionX +
-                                         pixels, self.positionY + pixels))
+        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
 
     def getPositionY(self):
         print("Position X et Y: {0},{1}".format(self.positionX, self.positionY))
