@@ -5,8 +5,8 @@ import os
 pygame.init()
 
 # Paramètres de la fenêtre
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1600
+SCREEN_HEIGHT = 1600
 WINDOW_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 WINDOW = pygame.display.set_mode(WINDOW_SIZE)
 pygame.display.set_caption("Tower Defense")
@@ -21,6 +21,7 @@ WHITE = (255, 255, 255)
 BACKGROUND_IMG = pygame.image.load("Assets/Background.png")
 TOWER_IMG = pygame.image.load("Assets/alien.png")
 
+
 # Classe pour les tours
 class Tower:
     def __init__(self, x, y):
@@ -30,6 +31,7 @@ class Tower:
 
     def draw(self, window):
         window.blit(self.image, (self.x, self.y))
+
 
 # Fonction principale du jeu
 def main():
@@ -41,14 +43,14 @@ def main():
     while run:
         clock.tick(FPS)
         WINDOW.fill(WHITE)
-        WINDOW.blit(BACKGROUND_IMG, (0, 0))
+        #WINDOW.blit(BACKGROUND_IMG, (0, 0))
 
         # Afficher l'image de la tour
-        WINDOW.blit(TOWER_IMG, (0, 0))
+        #WINDOW.blit(TOWER_IMG, (70, 90))
 
         # Dessiner les tours
         for tower in towers:
-           tower.draw(WINDOW)
+            tower.draw(WINDOW)
 
         # Gestion des événements
         for event in pygame.event.get():
@@ -67,6 +69,7 @@ def main():
         pygame.display.update()
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()

@@ -15,6 +15,7 @@ from word import *
 class Map:
     def __init__(self):
         # Pour lancer notre application en boucle
+        self.selected_tower = None
         self.running = True
         # titre de notre jeu
         pygame.display.set_caption("Tower Defense")
@@ -75,9 +76,14 @@ class Map:
         # instancier musique
         self.sound = Sound("Musique/1.mp3")
         self.vie_joueur = Vie()
-        self.armes = {
-            "arme_1": Arme(655, -10, "Assets/Armes/armes.png", "arme_1")
-        }
+        # self.armes = {
+        #    "arme_1": Arme(715, 40, "Assets/Armes/arme.png", "arme_1")
+        # }
+        self.mes_armes = [
+            Arme(715, 40, "Assets/Armes/arme.png", "arme_1"),
+            Arme(820, 40, "Assets/Armes/Basic2 howitzer moving_waifu2x_photo_noise3_scale.png", "arme_2")
+            # Ajoutez plus d'armes disponibles avec leurs positions
+        ]
         self.vagues_de_monstres = [
             [Monstre(84, 480), Monstre(84, 552)],
             [Monstre(84, 480), Monstre(84, 552), Monstre(84, 624)]
@@ -88,6 +94,11 @@ class Map:
         self.position_prochaine_vague = 165
         self.vague_affichee = False
         self.menu_map_screen = MenuGame(self)
+        self.click = ""
+        self.towers = []
+        self.placing_tower = False
+        self.selected_weapon = None
+        self.argent = 200
 
     def draw_map(self, world):
 
@@ -124,41 +135,6 @@ class Map:
                 elif cellule == 2:
                     pygame.draw.rect(self.screen, (171, 178, 185), pygame.Rect(x, y, self.pixels, 40))
 
-                elif cellule == 3:
-                    # image = pygame.image.load("Assets/Armes/wals.png")
-                    # # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    # image = pygame.transform.scale(image, (self.pixels, 40))
-                    # # on recupere un rectangle de l'image
-                    # rect = image.get_rect(
-                    #     center=(x + self.pixels / 2, y + self.pixels / 2))
-                    # self.screen.blit(image, rect)
-                    # on charge notre image
-                    image = pygame.image.load("Assets/Armes/armes-removebg-preview.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-                elif cellule == 4:
-                    image = pygame.image.load("Assets/Armes/wals.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-                    # on charge notre image
-                    image = pygame.image.load("Assets/Armes/Building5 laboratory.png")
-                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    image = pygame.transform.scale(image, (self.pixels, 40))
-                    # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
-                    self.screen.blit(image, rect)
-
-        pygame.display.flip()
-
     def afficher_message_vague(self):
         font = pygame.font.SysFont(None, 48)
         message = f"Vague {self.vague_actuelle + 1} !"
@@ -168,31 +144,40 @@ class Map:
         pygame.display.update()
         pygame.time.delay(3000)
 
-    def jeux_1(self, monde):
+    def draw(self):
+        # Afficher les armes disponibles
+        for armes in self.mes_armes:
+            armes.draw_armes(self.screen)
+
+        # Dessiner les tours placées
+        for tower in self.towers:
+            tower.draw_armes(self.screen)
+
+        # pygame.display.update()
+
+    def handle_events(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
-        self.draw_map(monde)
-        # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
-        declancher_prochaine_vague = all(
-            monstre.positionX == self.position_prochaine_vague and monstre.positionY == -78 for monstre in
-            self.vagues_de_monstres[self.vague_actuelle])
-        if declancher_prochaine_vague:
-            self.vague_actuelle += 1
-            self.afficher_message_vague()
 
-        # Afficher les monstres de la vague actuelle
-        for monstre in self.vagues_de_monstres[self.vague_actuelle]:
-            if self.vie_joueur.vie_joueur > 0:
-                monstre.draw_monstre_map_1(self.screen, self.pixels)
-                monstre.update_bar_de_vie(self.screen)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x, y = pygame.mouse.get_pos()
+                if self.placing_tower:
+                    if len(self.mes_armes) < 5 :
+                        self.towers.append(Arme(x, y, "Assets/Armes/arme.png", "arme_3"))
+                        # Ajouter la dernière arme ajoutée à mes_armes
+                        self.mes_armes.append(self.towers[-1])
+                        self.towers[-1].resize_image((50, 50))
+                        self.towers[-1].acheter(self)
+                        self.placing_tower = False
 
-            if monstre.positionX == 165 and monstre.positionY == -69:
-                self.vie_joueur.degat(monstre.degat, self.screen)
-
-        self.vie_joueur.afficher_vie_joueur(self.screen)
-
-        pygame.display.update()
+                else:
+                    for arme in self.mes_armes:
+                        # Vérifier les conditions de clic sur l'arme
+                        if arme.is_clicked_armes((x, y)):
+                            arme.cliquer(self)
+                            self.placing_tower = True
+                            break
 
     def run(self):
 
@@ -215,7 +200,33 @@ class Map:
 
             # Map 1
             elif self.etat == "jeu_map1":
-                self.jeux_1(word)
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        self.running = False
+
+                self.draw_map(word)
+                declancher_prochaine_vague = all(
+                    monstre.positionX == self.position_prochaine_vague and monstre.positionY == -78 for monstre in
+                    self.vagues_de_monstres[self.vague_actuelle])
+                if declancher_prochaine_vague:
+                    self.vague_actuelle += 1
+                    self.afficher_message_vague()
+
+                # Afficher les monstres de la vague actuelle
+                for monstre in self.vagues_de_monstres[self.vague_actuelle]:
+                    if self.vie_joueur.vie_joueur > 0:
+                        monstre.draw_monstre_map_1(self.screen, self.pixels)
+                        monstre.update_bar_de_vie(self.screen)
+
+                    if monstre.positionX == 165 and monstre.positionY == -69:
+                        self.vie_joueur.degat(monstre.degat, self.screen)
+
+                self.handle_events()
+                self.draw()
+                self.vie_joueur.afficher_vie_joueur(self.screen)
+                pygame.display.update()
+
+
             # Map 2
             elif self.etat == "jeu_map2":
 
@@ -224,7 +235,6 @@ class Map:
                         self.running = False
 
                 self.draw_map(word_2)
-
                 # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
                 declancher_prochaine_vague = all(
                     monstre.positionX == 444 and monstre.positionY == -78 for monstre in
@@ -237,12 +247,17 @@ class Map:
                 for monstre in self.vagues_de_monstres[self.vague_actuelle]:
                     if self.vie_joueur.vie_joueur > 0:
                         monstre.draw_monstre_map_2(self.screen, self.pixels)
+                        position = (monstre.positionX, monstre.positionY)
+                        Arme.detecter_montres(self.mes_armes, position)
                         monstre.update_bar_de_vie(self.screen)
 
                     if monstre.positionX == 444 and monstre.positionY == -69:
                         self.vie_joueur.degat(monstre.degat, self.screen)
 
+                self.handle_events()
+                self.draw()
                 self.vie_joueur.afficher_vie_joueur(self.screen)
+
 
                 pygame.display.update()
 
@@ -254,6 +269,7 @@ class Map:
                     if event.type == pygame.QUIT:
                         self.running = False
                 self.draw_map(word_3)
+
                 # Vérifier si tous les monstres ont atteint la position de déclenchement de la prochaine vague
                 declancher_prochaine_vague = all(
                     monstre.positionX == self.position_prochaine_vague and monstre.positionY == -78 for monstre in
@@ -271,6 +287,8 @@ class Map:
                     if monstre.positionX == 165 and monstre.positionY == -69:
                         self.vie_joueur.degat(monstre.degat, self.screen)
 
+                self.handle_events()
+                self.draw()
                 self.vie_joueur.afficher_vie_joueur(self.screen)
 
                 pygame.display.update()

@@ -65,7 +65,7 @@ class Button:
         sound.stop_sound()
 
     @classmethod
-    def MenuPrincipal(cls, mes_button, screen,Map):
+    def MenuPrincipal(cls, mes_button, screen, Map):
         # self.screen.blit(self.Fond_Menu, (0, 0))
         # on charge le Menu
         screen.blit(
@@ -98,12 +98,12 @@ class Button:
         #   On affiche les Boutons du Sous Menues Options
 
         screen.blit(mes_button["button_SousMenuMusique"].image,
-                         mes_button["button_SousMenuMusique"].rect)
+                    mes_button["button_SousMenuMusique"].rect)
         screen.blit(mes_button["button_SousMenuStopMusique"].image,
-                         mes_button["button_SousMenuStopMusique"].rect)
+                    mes_button["button_SousMenuStopMusique"].rect)
         screen.blit(mes_button["button_SousMenuAudio"].image, mes_button["button_SousMenuAudio"].rect)
         screen.blit(mes_button["button_SousMenuStopAudio"].image,
-                         mes_button["button_SousMenuStopAudio"].rect)
+                    mes_button["button_SousMenuStopAudio"].rect)
         screen.blit(mes_button["button_Retour"].image, mes_button["button_Retour"].rect)
         # On écoute les evenements sur les Bouttons qu'on attribue des etats et chaque etats correspond à un fenetre ou une action.
         for event in pygame.event.get():
