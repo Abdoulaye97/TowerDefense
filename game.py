@@ -28,36 +28,37 @@ class Map:
         # Définir la taille de la fenêtre en fonction de notre matrice
         self.window_width = self.matrix_width * self.pixels
         self.window_height = self.matrix_height * self.pixels
-        self.screen = pygame.display.set_mode(
-            (self.window_width, self.window_height))
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+# ou
+# self.screen = pygame.display.set_mode((pygame.display.Info().current_w, pygame.display.Info().current_h))
         # charger un image de fond
         self.background = pygame.image.load("Assets/sable.jpg")
-        self.background = pygame.transform.scale(
-            self.background, (self.window_width, self.window_height))
+        self.background = pygame.transform.scale(self.background, (self.screen.get_width(), self.screen.get_height()))
+
         # definir l'image de faire de notre Menu
 
-        self.Fond_Menu = pygame.image.load("Assets/Background.png")
+        self.Fond_Menu = pygame.image.load("Assets/BackTest2.png")
         self.Fond_Map = pygame.image.load("Assets/Cartes/map_1.png")
         # instanciation de mon menu
         self.mes_button = {
             "button_Menu": Button(500, 100,
-                                  "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Menu  col_Button.png"),
+                                  "Assets/Buttons/Menu.png"),
             "button_NewGame": Button(500, 220,
-                                     "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/New Game  col_Button.png"),
+                                     "Assets/Buttons/New_Game.png"),
             "button_Options": Button(500, 340,
-                                     "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Options  col_Button.png"),
+                                     "Assets/Buttons/Options.png"),
             "button_Quitt": Button(500, 460,
-                                   "Assets/Menu Buttons/Large Buttons/Colored Large Buttons/Quit  col_Button.png"),
+                                   "Assets/Buttons/Quit.png"),
             "button_SousMenuMusique": Button(400, 100,
-                                             "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Music col_Square Button.png"),
+                                             "Assets/Buttons/Music_note_icon.png"),
             "button_SousMenuStopMusique": Button(620, 100,
-                                                 "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/X col_Square Button.png"),
+                                                 "Assets/Buttons/Decline.png"),
             "button_SousMenuAudio": Button(400, 250,
-                                           "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Audio col_Square Button.png"),
+                                           "Assets/Buttons/Music_note_icon.png"),
             "button_SousMenuStopAudio": Button(620, 250,
-                                               "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/X col_Square Button.png"),
+                                               "Assets/Buttons/Decline.png"),
             "button_Retour": Button(520, 420,
-                                    "Assets/Menu Buttons/Square Buttons/Colored Square Buttons/Back col_Square Button.png")
+                                    "Assets/Buttons/Back.png")
         }
         self.cartes = {
             "carte_1": Carte(170, 250, "Assets/Cartes/map_1.png"),
@@ -88,6 +89,15 @@ class Map:
         self.position_prochaine_vague = 165
         self.vague_affichee = False
         self.menu_map_screen = MenuGame(self)
+
+    # def load(self, path, ):
+    #     image = pygame.image.load(path)
+    #     # On redimensionne l'image pour qu'il prenne la taille de la cellule
+    #     image = pygame.transform.scale(image, (self.pixels, 40))
+    #     # on recupere un rectangle de l'image
+    #     rect = image.get_rect(
+    #         center=(x + self.pixels / 2, y + self.pixels / 2))
+    #     self.screen.blit(image, rect)
 
     def draw_map(self, world):
 

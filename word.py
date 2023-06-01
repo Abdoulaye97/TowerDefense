@@ -16,6 +16,15 @@ word = [
     [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 5],
 
 ]
+# fonction récupérer positions adjacentes getAdj(pos):
+#   listePositions = []
+#   récupérer position actuelle = pos ( [i][j] )
+#   listePositions = [[i-1][j], [i+1][j], [i][j-1], [i][j+1]]
+
+# fonction bouger :
+#   position = self.pos
+#   adjacentes = 
+
 
 word_2 = [
 
