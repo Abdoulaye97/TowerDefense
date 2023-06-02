@@ -142,3 +142,4 @@ class Button:
                         Button.option_stop_audio(mes_button, screen, sound)
 
         pygame.display.flip()
+

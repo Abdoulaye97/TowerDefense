@@ -13,3 +13,5 @@ class AfficheurTexte:
         color = pygame.Color(self.couleur[0], self.couleur[1], self.couleur[2])
         text = font.render(self.text, True, color)
         screen.blit(text, (self.positionX, self.positionY))
+
+

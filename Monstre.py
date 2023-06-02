@@ -7,9 +7,9 @@ class Monstre(pygame.sprite.Sprite):
         self.image_monstre = pygame.image.load("Assets/alien.png").convert_alpha()
         self.image_monstre = pygame.transform.scale(
             self.image_monstre, (30, 30))
-        # self.rect = self.image_monstre.get_rect(center=(positionX, positionY))
         self.positionX = positionX
         self.positionY = positionY
+        self.rect = self.image_monstre.get_rect(center=(positionX, positionY))
         self.vitesse = 3
         self.health = 2
         self.direction_x = 0
@@ -73,8 +73,8 @@ class Monstre(pygame.sprite.Sprite):
             self.positionY -= self.vitesse
 
             if self.positionX == 165 and self.positionY == -75:
-               # self.position_depart()
-               pass
+                # self.position_depart()
+                pass
 
     def draw_monstre_map_2(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
@@ -100,7 +100,7 @@ class Monstre(pygame.sprite.Sprite):
             self.positionY -= self.vitesse
 
             if self.positionX == 444 and self.positionY == -75:
-             pass
+                pass
 
     def draw_monstre_map_3(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
@@ -112,17 +112,17 @@ class Monstre(pygame.sprite.Sprite):
             self.positionY -= self.vitesse
         elif self.positionX != 489 and self.positionY == 288:
             self.positionX += self.vitesse
-        elif self.positionY != 168 and self.positionX==489:
-            self.positionY -=self.vitesse
-        elif self.positionX !=165 and self.positionY==168:
-            self.positionX -=self.vitesse
+        elif self.positionY != 168 and self.positionX == 489:
+            self.positionY -= self.vitesse
+        elif self.positionX != 165 and self.positionY == 168:
+            self.positionX -= self.vitesse
 
         elif self.positionX == 165 and self.positionY != -78:
             self.positionY -= self.vitesse
 
             if self.positionX == 165 and self.positionY == -75:
-               # self.position_depart()
-               pass
+                # self.position_depart()
+                pass
 
     def update_monstre(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
@@ -130,3 +130,9 @@ class Monstre(pygame.sprite.Sprite):
     def getPositionY(self):
         print("Position X et Y: {0},{1}".format(self.positionX, self.positionY))
         # print("Taille {0}".format(self.image_monstre.get_size()))
+
+    def detecter_collision_projectile(self, projectiles):
+        for projectile in projectiles:
+                if self.rect.colliderect(projectile.rect):
+                    self.nbr_vie -= 5
+                    print("touche")
