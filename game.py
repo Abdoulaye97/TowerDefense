@@ -28,37 +28,26 @@ class Map:
         # Définir la taille de la fenêtre en fonction de notre matrice
         self.window_width = self.matrix_width * self.pixels
         self.window_height = self.matrix_height * self.pixels
-        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
-# ou
-# self.screen = pygame.display.set_mode((pygame.display.Info().current_w, pygame.display.Info().current_h))
+        self.screen = pygame.display.set_mode(
+            (self.window_width, self.window_height))
         # charger un image de fond
         self.background = pygame.image.load("Assets/sable.jpg")
-        self.background = pygame.transform.scale(self.background, (self.screen.get_width(), self.screen.get_height()))
-
+        self.background = pygame.transform.scale(self.background, (self.window_width, self.window_height))
         # definir l'image de faire de notre Menu
 
-        self.Fond_Menu = pygame.image.load("Assets/BackTest2.png")
+        self.Fond_Menu = pygame.image.load("Assets/BackTest.png")
         self.Fond_Map = pygame.image.load("Assets/Cartes/map_1.png")
         # instanciation de mon menu
         self.mes_button = {
-            "button_Menu": Button(500, 100,
-                                  "Assets/Buttons/Menu.png"),
-            "button_NewGame": Button(500, 220,
-                                     "Assets/Buttons/New_Game.png"),
-            "button_Options": Button(500, 340,
-                                     "Assets/Buttons/Options.png"),
-            "button_Quitt": Button(500, 460,
-                                   "Assets/Buttons/Quit.png"),
-            "button_SousMenuMusique": Button(400, 100,
-                                             "Assets/Buttons/Music_note_icon.png"),
-            "button_SousMenuStopMusique": Button(620, 100,
-                                                 "Assets/Buttons/Decline.png"),
-            "button_SousMenuAudio": Button(400, 250,
-                                           "Assets/Buttons/Music_note_icon.png"),
-            "button_SousMenuStopAudio": Button(620, 250,
-                                               "Assets/Buttons/Decline.png"),
-            "button_Retour": Button(520, 420,
-                                    "Assets/Buttons/Back.png")
+            "button_Menu": Button(500, 100,"Assets/logo.png"),
+            "button_NewGame": Button(500, 220,"Assets/Buttons/New_Game.png"),
+            "button_Options": Button(500, 340,"Assets/Buttons/Options.png"),
+            "button_Quitt": Button(500, 460,"Assets/Buttons/Quit.png"),
+            "button_SousMenuMusique": Button(400, 100,"Assets/Buttons/Music_note_icon.png"),
+            "button_SousMenuStopMusique": Button(620, 100,"Assets/Buttons/Decline.png"),
+            "button_SousMenuAudio": Button(400, 250,"Assets/Buttons/Music_note_icon.png"),
+            "button_SousMenuStopAudio": Button(620, 250,"Assets/Buttons/Decline.png"),
+            "button_Retour": Button(520, 420,"Assets/Buttons/Back.png")
         }
         self.cartes = {
             "carte_1": Carte(170, 250, "Assets/Cartes/map_1.png"),
@@ -66,9 +55,9 @@ class Map:
             "carte_3": Carte(790, 250, "Assets/Cartes/map_3.png")
         }
         self.text = {
-            "text_easy": AfficheurTexte("Facile", 150, 360, (128, 128, 128)),
-            "text_medium": AfficheurTexte("Moyen", 430, 360, (128, 128, 128)),
-            "text.difficile": AfficheurTexte("Difficile", 750, 360, (128, 128, 128)),
+            "text_easy": AfficheurTexte("Facile", 150, 360, (0,0,0)),
+            "text_medium": AfficheurTexte("Moyen", 430, 360, (0,0,0)),
+            "text.difficile": AfficheurTexte("Difficile", 750, 360, (0,0,0)),
             "game_over": AfficheurTexte("Game Over", 400, 400, (199, 0, 57))
         }
         self.etat_button_options = "normal"
@@ -135,13 +124,13 @@ class Map:
                     pygame.draw.rect(self.screen, (171, 178, 185), pygame.Rect(x, y, self.pixels, 40))
 
                 elif cellule == 3:
-                    # image = pygame.image.load("Assets/Armes/wals.png")
-                    # # On redimensionne l'image pour qu'il prenne la taille de la cellule
-                    # image = pygame.transform.scale(image, (self.pixels, 40))
-                    # # on recupere un rectangle de l'image
-                    # rect = image.get_rect(
-                    #     center=(x + self.pixels / 2, y + self.pixels / 2))
-                    # self.screen.blit(image, rect)
+                    image = pygame.image.load("Assets/Armes/wals.png")
+                    # On redimensionne l'image pour qu'il prenne la taille de la cellule
+                    image = pygame.transform.scale(image, (self.pixels, 40))
+                    # on recupere un rectangle de l'image
+                    rect = image.get_rect(
+                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    self.screen.blit(image, rect)
                     # on charge notre image
                     image = pygame.image.load("Assets/Armes/armes-removebg-preview.png")
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
@@ -163,8 +152,7 @@ class Map:
                     # On redimensionne l'image pour qu'il prenne la taille de la cellule
                     image = pygame.transform.scale(image, (self.pixels, 40))
                     # on recupere un rectangle de l'image
-                    rect = image.get_rect(
-                        center=(x + self.pixels / 2, y + self.pixels / 2))
+                    rect = image.get_rect(center=(x + self.pixels / 2, y + self.pixels / 2))
                     self.screen.blit(image, rect)
 
         pygame.display.flip()
