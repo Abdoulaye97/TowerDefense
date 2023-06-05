@@ -167,7 +167,7 @@ class Map:
                             self.towers[-1].acheter(self)
                             armes.is_placed = True
                             self.arme_placee_recente = True
-                            if armes.cout_arme <= self.argent < self.prix_arme_definie:
+                            if  self.argent > armes.cout_arme < self.prix_arme_definie:
                                 pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
                                 self.initial_image_clicked = False
 
