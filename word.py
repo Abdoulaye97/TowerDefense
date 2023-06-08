@@ -1,6 +1,4 @@
-# def matrix():
 word = [
-
     [1, 1, 1, 3, 1, 0, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 3, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2],
@@ -14,7 +12,6 @@ word = [
     [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 3, 1, 0, 1, 3, 1, 3, 1, 3, 1, 3, 1, 4, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
     [1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2],
-
 ]
 # fonction récupérer positions adjacentes getAdj(pos):
 #   listePositions = []
@@ -24,6 +21,18 @@ word = [
 # fonction bouger :
 #   position = self.pos
 #   adjacentes = 
+
+  
+  
+  #Dans Game
+  # def load(self, path, ):
+    #     image = pygame.image.load(path)
+    #     # On redimensionne l'image pour qu'il prenne la taille de la cellule
+    #     image = pygame.transform.scale(image, (self.pixels, 40))
+    #     # on recupere un rectangle de l'image
+    #     rect = image.get_rect(
+    #         center=(x + self.pixels / 2, y + self.pixels / 2))
+    #     self.screen.blit(image, rect)
 
 
 word_2 = [
