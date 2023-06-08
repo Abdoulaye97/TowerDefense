@@ -167,7 +167,7 @@ class Map:
                             self.towers[-1].acheter(self)
                             armes.is_placed = True
                             self.arme_placee_recente = True
-                            if  self.argent > armes.cout_arme < self.prix_arme_definie:
+                            if self.argent > armes.cout_arme < self.prix_arme_definie:
                                 pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)
                                 self.initial_image_clicked = False
 
@@ -203,7 +203,7 @@ class Map:
                 draw_method = draw_methods[num]
                 draw_method(self.screen, self.pixels)
 
-            positions = (monstre.positionX, monstre.positionY)
+                positions = (monstre.positionX, monstre.positionY)
 
             for arme in self.mes_armes:
                 Arme.detecter_monstres([arme], positions, 300)

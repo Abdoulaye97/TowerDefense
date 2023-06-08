@@ -17,6 +17,8 @@ class Monstre(pygame.sprite.Sprite):
         self.nbr_vie = 50
         self.nbr_vie_max = 50
         self.degat = 25
+        self.positions_visitees = []
+        self.position_monstre = [84, 480]
 
     def position_depart(self):
         self.positionX = 84
@@ -52,6 +54,46 @@ class Monstre(pygame.sprite.Sprite):
                     self.positionX += self.direction_x * 3
 
         print("{0},{1}".format(self.positionX, self.positionY))
+
+    def draw_monstre_map(self, screen, pixels, word):
+        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
+
+        # Vérifier les déplacements possibles dans toutes les directions
+        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]  # Gauche, droite, haut, bas
+
+        for direction in directions:
+            nouvelle_positionX = self.positionX + self.vitesse * direction[0]
+            nouvelle_positionY = self.positionY + self.vitesse * direction[1]
+
+            if self.est_position_valide([nouvelle_positionX, nouvelle_positionY], word) and [nouvelle_positionX, nouvelle_positionY] not in self.positions_visitees:
+                self.positionX = nouvelle_positionX
+                self.positionY = nouvelle_positionY
+                self.positions_visitees.append([self.positionX, self.positionY])
+                break  # Sortir de la boucle dès qu'un déplacement valide est trouvé
+
+
+    def est_position_valide(self, position, word):
+        positionX, positionY = position
+        return 0 <= positionX < len(word) and 0 <= positionY < len(word[0]) and word[positionX][positionY] == ' '
+
+    def draw_monstre_map(self, screen, pixels, word):
+        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
+        if self.positionX - 1 >= 0 and self.est_position_valide([self.positionX - 1, self.positionY], word) and [
+            self.positionX - 1, self.positionY] not in self.positions_visitees:
+            self.positionX -= self.vitesse  # Déplacer vers le haut
+        elif self.positionX + 1 < len(word) and self.est_position_valide([self.positionX + 1, self.positionY],
+                                                                         word) and [self.positionX + 1,
+                                                                                    self.positionY] not in self.positions_visitees:
+            self.positionX += self.vitesse  # Déplacer vers le bas
+        elif self.positionY + 1 < len(word[0]) and self.est_position_valide([self.positionX, self.positionY + 1],
+                                                                            word) and [self.positionX,
+                                                                                       self.positionY + 1] not in self.positions_visitees:
+            self.positionY += self.vitesse  # Déplacer vers la droite
+        elif self.positionY - 1 >= 0 and self.est_position_valide([self.positionX, self.positionY - 1], word) and [
+            self.positionX, self.positionY - 1] not in self.positions_visitees:
+            self.positionY -= self.vitesse  # Déplacer vers la gauche
+
+        self.positions_visitees.append([self.positionX, self.positionY])
 
     def draw_monstre_map_1(self, screen, pixels):
         # on affiche le joueur
@@ -133,6 +175,6 @@ class Monstre(pygame.sprite.Sprite):
 
     def detecter_collision_projectile(self, projectiles):
         for projectile in projectiles:
-                if self.rect.colliderect(projectile.rect):
-                    self.nbr_vie -= 5
-                    print("touche")
+            if self.rect.colliderect(projectile.rect):
+                self.nbr_vie -= 5
+                print("touche")
