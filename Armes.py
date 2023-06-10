@@ -8,9 +8,9 @@ from Projectille import Projectile
 class Arme:
     all_projectiles = pygame.sprite.Group()
     last_shot_time = 0
-    shot_delay = 0.1  # Délai en secondes entre chaque lancement de projectile
+    shot_delay = 0  # Délai en secondes entre chaque lancement de projectile
     arme_en_tir = True
-    projectile_delay = 0.3
+    projectile_delay = 0.4
 
     def __init__(self, position_x, position_y, image, types):
 

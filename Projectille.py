@@ -54,3 +54,15 @@ class Projectile(Sprite):
     def draw(self, screen):
         # Dessiner le projectile à l'écran
         screen.blit(self.image, self.rect)
+
+    def detecter_collision_monstres(self, monstres):
+        for monstre in monstres:
+            if self.rect.colliderect(monstre.rect):
+                monstre.nbr_vie -= 5
+                self.kill()  # Supprimer le projectile lorsqu'il touche un monstre
+                print("Projectile touché un monstre")
+
+                if monstre.nbr_vie <= 0:
+                    print(monstre.nbr_vie)
+                    monstre.kill()  # Supprimer le monstre lorsqu'il est mort
+

@@ -92,7 +92,7 @@ class Map:
         self.monstre_positions = []
 
         self.vagues_de_monstres = [
-            [Monstre(84, 480)],
+            [Monstre(84, 480), Monstre(84, 552), Monstre(84, 624)],
             [Monstre(84, 480), Monstre(84, 552), Monstre(84, 624)]
         ]
         self.monstres_vague_actuelle = 0
@@ -192,6 +192,7 @@ class Map:
         mes_armes = self.mes_armes  # Stocker les armes pour éviter un accès répété
 
         for monstre in self.vagues_de_monstres[self.vague_actuelle]:
+
             if vie_joueur > 0:
                 draw_methods = {
                     1: monstre.draw_monstre_map_1,
@@ -203,6 +204,8 @@ class Map:
                 draw_method = draw_methods[num]
                 draw_method(self.screen, self.pixels)
 
+                monstre.update_velocite_rect()
+
                 positions = (monstre.positionX, monstre.positionY)
 
             for arme in self.mes_armes:
@@ -213,9 +216,10 @@ class Map:
                     Arme.all_projectiles.remove(projectile)
 
                 else:
-                    monstre.detecter_collision_projectile([projectile])
-                    projectile.update()
                     projectile.draw(self.screen)
+                    Monstre.detecter_collision_monstres(self.vagues_de_monstres[self.vague_actuelle], [projectile])
+                    projectile.update()
+                # projectile.rec_pro()
 
             monstre.update_bar_de_vie(self.screen)
 

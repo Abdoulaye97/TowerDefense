@@ -1,15 +1,26 @@
+from collections import deque
+from datetime import time
+from random import random
+
 import pygame
 
 
 class Monstre(pygame.sprite.Sprite):
     def __init__(self, positionX, positionY):
         super().__init__()
-        self.image_monstre = pygame.image.load("Assets/alien.png").convert_alpha()
+        self.image_monstre = pygame.image.load("Assets/alien.png")
         self.image_monstre = pygame.transform.scale(
-            self.image_monstre, (30, 30))
+           self.image_monstre, (35, 30))
         self.positionX = positionX
         self.positionY = positionY
-        self.rect = self.image_monstre.get_rect(center=(positionX, positionY))
+        self.rect = self.image_monstre.get_rect()
+        self.rect.x = self.positionX
+        self.rect.y = self.positionY
+
+        self.rect.width = self.image_monstre.get_width()-10
+        self.rect.center = (self.positionX, self.positionY)
+
+        self.rect.height = self.image_monstre.get_height()-2
         self.vitesse = 3
         self.health = 2
         self.direction_x = 0
@@ -17,8 +28,23 @@ class Monstre(pygame.sprite.Sprite):
         self.nbr_vie = 50
         self.nbr_vie_max = 50
         self.degat = 25
-        self.positions_visitees = []
-        self.position_monstre = [84, 480]
+        self.positions_visitees = set()
+        self.position_monstre = [self.positionX, self.positionY]
+
+    @classmethod
+    def detecter_collision_monstres(cls, monstres, projectiles):
+
+        for monstre in monstres:
+            for projectile in projectiles:
+                if monstre.rect.colliderect(projectile.rect):
+                    # Collision détectée entre le monstre et le projectile
+                    monstre.nbr_vie -= 5
+                    projectiles.remove(projectile)  # Supprimer le projectile lorsqu'il touche le monstre
+                    print("Monstre touché !")
+
+                    if monstre.nbr_vie <= 0:
+                        monstres.remove(monstre)
+
 
     def position_depart(self):
         self.positionX = 84
@@ -32,9 +58,17 @@ class Monstre(pygame.sprite.Sprite):
         # couleur de l'arriere plan qui va permettre devoir si le monstre a subit un degat
         couleur_arriere_plan = (60, 63, 60)
         # la position de l'arriere plan
+
         position_arriere_plan = [self.positionX + 30, self.positionY + 36, self.nbr_vie_max, 3]
         pygame.draw.rect(surface, couleur_arriere_plan, position_arriere_plan)
         pygame.draw.rect(surface, bar_color, position)
+
+    def show_message(self, screen, message):
+        font = pygame.font.Font(None, 24)  # Définir la police et la taille du texte
+        text = font.render(message, True,
+                           (255, 255, 255))  # Créer une surface de texte avec le message et la couleur blanche
+        text_rect = text.get_rect(center=self.rect.center)  # Obtenir le rectangle du texte centré sur le monstre
+        screen.blit(text, text_rect)  # Afficher le texte à l'écran
 
     def move(self):
 
@@ -55,94 +89,56 @@ class Monstre(pygame.sprite.Sprite):
 
         print("{0},{1}".format(self.positionX, self.positionY))
 
-    def draw_monstre_map(self, screen, pixels, word):
-        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
-
-        # Vérifier les déplacements possibles dans toutes les directions
-        directions = [(0, -1), (0, 1), (-1, 0), (1, 0)]  # Gauche, droite, haut, bas
-
-        for direction in directions:
-            nouvelle_positionX = self.positionX + self.vitesse * direction[0]
-            nouvelle_positionY = self.positionY + self.vitesse * direction[1]
-
-            if self.est_position_valide([nouvelle_positionX, nouvelle_positionY], word) and [nouvelle_positionX, nouvelle_positionY] not in self.positions_visitees:
-                self.positionX = nouvelle_positionX
-                self.positionY = nouvelle_positionY
-                self.positions_visitees.append([self.positionX, self.positionY])
-                break  # Sortir de la boucle dès qu'un déplacement valide est trouvé
-
-
-    def est_position_valide(self, position, word):
-        positionX, positionY = position
-        return 0 <= positionX < len(word) and 0 <= positionY < len(word[0]) and word[positionX][positionY] == ' '
-
-    def draw_monstre_map(self, screen, pixels, word):
-        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
-        if self.positionX - 1 >= 0 and self.est_position_valide([self.positionX - 1, self.positionY], word) and [
-            self.positionX - 1, self.positionY] not in self.positions_visitees:
-            self.positionX -= self.vitesse  # Déplacer vers le haut
-        elif self.positionX + 1 < len(word) and self.est_position_valide([self.positionX + 1, self.positionY],
-                                                                         word) and [self.positionX + 1,
-                                                                                    self.positionY] not in self.positions_visitees:
-            self.positionX += self.vitesse  # Déplacer vers le bas
-        elif self.positionY + 1 < len(word[0]) and self.est_position_valide([self.positionX, self.positionY + 1],
-                                                                            word) and [self.positionX,
-                                                                                       self.positionY + 1] not in self.positions_visitees:
-            self.positionY += self.vitesse  # Déplacer vers la droite
-        elif self.positionY - 1 >= 0 and self.est_position_valide([self.positionX, self.positionY - 1], word) and [
-            self.positionX, self.positionY - 1] not in self.positions_visitees:
-            self.positionY -= self.vitesse  # Déplacer vers la gauche
-
-        self.positions_visitees.append([self.positionX, self.positionY])
-
     def draw_monstre_map_1(self, screen, pixels):
-        # on affiche le joueur
-        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
-        # Dans ces conditions on verifies la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
-        if self.positionY != 324 and self.positionX == 84:
-            self.positionY -= self.vitesse
+        if self.image_monstre is not None:
+            screen.blit(self.image_monstre, (self.positionX+pixels, self.positionY+pixels))
+            pygame.draw.rect(screen, (255, 0, 0), self.rect, 2)
 
-        elif self.positionX != 564 and self.positionY == 324:
-            self.positionX += self.vitesse
+            if self.positionY != 324 and self.positionX == 84:
+                self.positionY -= self.vitesse
 
-        elif self.positionY != 42 and self.positionX == 564:
-            self.positionY -= self.vitesse
+            elif self.positionX != 564 and self.positionY == 324:
+                self.positionX += self.vitesse
 
-        elif self.positionX != 165 and self.positionY == 42:
-            self.positionX -= self.vitesse
+            elif self.positionY != 42 and self.positionX == 564:
+                self.positionY -= self.vitesse
 
-        elif self.positionX == 165 and self.positionY != -78:
-            self.positionY -= self.vitesse
+            elif self.positionX != 165 and self.positionY == 42:
+                self.positionX -= self.vitesse
 
-            if self.positionX == 165 and self.positionY == -75:
-                # self.position_depart()
-                pass
+            elif self.positionX == 165 and self.positionY != -78:
+                self.positionY -= self.vitesse
+
+                if self.positionX == 165 and self.positionY == -75:
+                    # self.position_depart()
+                    pass
 
     def draw_monstre_map_2(self, screen, pixels):
-        screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
-        # Dans ces conditions on verifies la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
-        if self.positionY != 327 and self.positionX == 84:
-            self.positionY -= self.vitesse
-        elif self.positionX != 123 and self.positionY == 327:
-            self.positionX += self.vitesse
-        elif self.positionY != 288 and self.positionX == 123:
-            self.positionY -= self.vitesse
-        elif self.positionX != 168 and self.positionY == 288:
-            self.positionX += self.vitesse
-        elif self.positionY != 165 and self.positionX == 168:
-            self.positionY -= self.vitesse
-        elif self.positionX != 489 and self.positionY == 165:
-            self.positionX += self.vitesse
-        elif self.positionY != 84 and self.positionX == 489:
-            self.positionY -= self.vitesse
-        elif self.positionX != 444 and self.positionY == 84:
-            self.positionX -= self.vitesse
+        if self.image_monstre is not None:
+            screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
+            # Dans ces conditions on verifies la position initiale du joueur lors du creation de l'objet si cette position respecte les conditions le monstre pourra se deplacer
+            if self.positionY != 327 and self.positionX == 84:
+                self.positionY -= self.vitesse
+            elif self.positionX != 123 and self.positionY == 327:
+                self.positionX += self.vitesse
+            elif self.positionY != 288 and self.positionX == 123:
+                self.positionY -= self.vitesse
+            elif self.positionX != 168 and self.positionY == 288:
+                self.positionX += self.vitesse
+            elif self.positionY != 165 and self.positionX == 168:
+                self.positionY -= self.vitesse
+            elif self.positionX != 489 and self.positionY == 165:
+                self.positionX += self.vitesse
+            elif self.positionY != 84 and self.positionX == 489:
+                self.positionY -= self.vitesse
+            elif self.positionX != 444 and self.positionY == 84:
+                self.positionX -= self.vitesse
 
-        elif self.positionX == 444 and self.positionY != -78:
-            self.positionY -= self.vitesse
+            elif self.positionX == 444 and self.positionY != -78:
+                self.positionY -= self.vitesse
 
-            if self.positionX == 444 and self.positionY == -75:
-                pass
+                if self.positionX == 444 and self.positionY == -75:
+                    pass
 
     def draw_monstre_map_3(self, screen, pixels):
         screen.blit(self.image_monstre, (self.positionX + pixels, self.positionY + pixels))
@@ -173,8 +169,55 @@ class Monstre(pygame.sprite.Sprite):
         print("Position X et Y: {0},{1}".format(self.positionX, self.positionY))
         # print("Taille {0}".format(self.image_monstre.get_size()))
 
-    def detecter_collision_projectile(self, projectiles):
+    def detecter_collision_projectilea(self, projectiles):
         for projectile in projectiles:
             if self.rect.colliderect(projectile.rect):
                 self.nbr_vie -= 5
                 print("touche")
+
+    def detecter_collision_projectileee(self, projectiles):
+        for projectile in projectiles:
+            if self.rect.collidepoint(projectile.rect.center):
+                self.nbr_vie -= 5
+                projectiles.remove(projectile)  # Supprimer le projectile lorsqu'il touche le monstre
+                print("touché")
+
+                if self.nbr_vie <= 0:
+                    # Le monstre est mort, ajoutez ici le code correspondant
+                    self.remove()
+
+    def detecter_collision_projectile(self, projectiles):
+        monstre_touche = False  # Variable pour indiquer si le monstre a été touché
+
+        for projectile in projectiles:
+            if self.rect.colliderect(projectile.rect):
+                self.nbr_vie -= 5
+                projectiles.remove(projectile)  # Supprimer le projectile lorsqu'il touche le monstre
+                print("touché")
+
+                if self.nbr_vie <= 0:
+                    monstre_touche = True  # Le monstre a été touché
+
+        if monstre_touche:
+            # Code pour supprimer le monstre et les projectiles associés
+            self.remove()  # Supprimer le monstre
+
+            # Supprimer les projectiles restants qui sont associés à ce monstre
+            for projectile in projectiles.copy():
+                if projectile.monstre == self:
+                    projectiles.remove(projectile)
+
+    def update_projectille(self, projectiles):
+        self.detecter_collision_projectile(projectiles)
+
+    def remove(self):
+        # Ajoutez ici la logique pour faire disparaître le monstre
+        # Par exemple, vous pouvez le rendre invisible en définissant son attribut image à None :
+        print(self.rect)
+
+    def update_velocite_rect(self):
+        self.rect.x = self.positionX+45
+        self.rect.y = self.positionY+42
+
+
+
